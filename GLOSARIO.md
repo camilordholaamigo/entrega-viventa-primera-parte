@@ -13,10 +13,10 @@ Todas las skills que el equipo de Growth & Marketing tiene disponibles en esta e
 | [`viventa-pack-evento`](skills/viventa-pack-evento/SKILL.md) | Eventos | Convierte guiones y brief en la matriz de producción: una fila por archivo, copy final, nombre de archivo y el CSV que alimenta las plantillas maestras de Figma.. | Lista · falta primera corrida con datos reales |
 | [`viventa-qa-marca`](skills/viventa-qa-marca/SKILL.md) | Eventos | Pre-filtro de la revisión de marca: revisa una pieza, copy, guion, landing, correo o plantilla de WhatsApp en 5 capas (legal de crédito, cifras, palabras prohibidas, voz, reglas del cliente y del canal), entrega las correcciones redactadas y arma el resumen del día.. | Corrida con material real |
 | [`viventa-monitor-evento`](skills/viventa-monitor-evento/SKILL.md) | Eventos | Tablero diario de los eventos activos (proyección y hasta 3 acciones para la agencia) y ficha de cierre post-mortem: repetir, ajustar o descartar.. | Lista · falta primera corrida con datos reales |
-| [`viventa-evento-aliado`](skills/viventa-evento-aliado/SKILL.md) | Eventos | El runbook de un evento con aliados —networking con constructoras, taller o webinar con negocios o consulados, punto de activación—: cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.. | Nueva (8-oct) · sin corrida |
+| [`viventa-evento-aliado`](skills/viventa-evento-aliado/SKILL.md) | Eventos | El runbook de un evento con aliados (networking con constructoras, taller o webinar con negocios o consulados, punto de activación): cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.. | Nueva (8-oct) · sin corrida |
 | [`viventa-corte-video-pauta`](skills/viventa-corte-video-pauta/SKILL.md) | Producción de piezas y video | Arma el primer corte de los videos de pauta a partir del material grabado: elige la mejor toma de cada línea del guion, quita silencios, quema subtítulos y exporta en 9:16, 4:5 y 1:1 con la lista de decisiones de edición.. | Nueva (8-oct) · sin corrida |
 | [`viventa-piezas-figma`](skills/viventa-piezas-figma/SKILL.md) | Producción de piezas y video | Produce en Figma el primer borrador de cada formato de un brief (feed, historia, carrusel, estático de pauta, correo, landing, impreso) con la librería de componentes y el manual de la marca, listo para que diseño ajuste y apruebe.. | Nueva (8-oct) · sin corrida |
-| [`viventa-versionador-piezas`](skills/viventa-versionador-piezas/SKILL.md) | Producción de piezas y video | Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables —evento, ciudad, país, fecha, consultora, proyecto, precio— y verifica dato por dato.. | Nueva (8-oct) · sin corrida |
+| [`viventa-versionador-piezas`](skills/viventa-versionador-piezas/SKILL.md) | Producción de piezas y video | Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables (evento, ciudad, país, fecha, consultora, proyecto, precio) y verifica dato por dato.. | Nueva (8-oct) · sin corrida |
 | [`viventa-brief-requerimiento`](skills/viventa-brief-requerimiento/SKILL.md) | Requerimientos y aprobación | Convierte cualquier pedido a mercadeo (campaña 360, reel, landing, material comercial, impreso o pieza extra de un evento) en el formato único de brief, con aprobadores, plazos y cada dato con su fuente, o en máximo 5 preguntas para devolverle al solicitante.. | Lista · falta primera corrida con datos reales |
 | [`viventa-inteligencia-campana`](skills/viventa-inteligencia-campana/SKILL.md) | Inteligencia y dinero | El insight de entrada de una campaña: target, dolores con verbatims y señales frescas (comentarios, llamadas, Instagram y TikTok), 3 ángulos y 5 hooks; y, si se pide, el brief creativo con el paquete estándar de piezas o el set de optimización.. | Lista · falta primera corrida con datos reales |
 | [`viventa-forecast-pauta`](skills/viventa-forecast-pauta/SKILL.md) | Inteligencia y dinero | Con los exports de Meta Ads, Zoho Expense y tarjetas corporativas proyecta cuánto va a cerrar el mes la pauta y todo el presupuesto de mercadeo por campaña y rubro, cuántos días quedan para corregir y, cuando llega la contabilidad, concilia. | Lista · falta primera corrida con datos reales |
@@ -29,7 +29,7 @@ Todas las skills que el equipo de Growth & Marketing tiene disponibles en esta e
 | [`viventa-caso-exito`](skills/viventa-caso-exito/SKILL.md) | Prueba social y comunicaciones | Convierte clientes reales en casos de éxito: la guía de entrevista emocional o, con la entrevista hecha, el caso en 3 actos, un guion de 60-90 s y recortes para piezas.. | Lista · falta primera corrida con datos reales |
 | [`viventa-datos-publicables`](skills/viventa-datos-publicables/SKILL.md) | Prueba social y comunicaciones | La hoja mensual de datos comerciales y de proyectos que se pueden publicar (viviendas vendidas, negocios cerrados, precios y disponibilidad): cada dato con fuente, fecha de corte, vigencia, quién lo aprobó y para qué sirve. | Nueva (8-oct) · sin corrida |
 | [`viventa-comunicaciones-campana`](skills/viventa-comunicaciones-campana/SKILL.md) | Prueba social y comunicaciones | La convocatoria completa de un evento por email y WhatsApp: 7 correos y 5 mensajes en 21 días, con onboarding por registro y segmentación que protege el dominio.. | Lista · falta primera corrida con datos reales |
-| [`viventa-kit-referidor`](skills/viventa-kit-referidor/SKILL.md) | Referidores | El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa —código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM—.. | Funciona sin montos · falta documento del programa |
+| [`viventa-kit-referidor`](skills/viventa-kit-referidor/SKILL.md) | Referidores | El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa: código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM.. | Funciona sin montos · falta documento del programa |
 | [`viventa-ciclo-referidor`](skills/viventa-ciclo-referidor/SKILL.md) | Referidores | Lo que pasa después de activar al referidor: su parrilla mensual, 3 correos para reactivarlo cuando deja de referir y el correo de resultados del consultor.. | Funciona sin montos · falta documento del programa |
 | [`viventa-conciliacion-referidos`](skills/viventa-conciliacion-referidos/SKILL.md) | Referidores | Cruza referidos, cierres y pagos de los programas de referidos con los exports de Zoho: a quién se le debe, desde cuándo y por qué no se creó la tarea de pago, con causa probable, acción y responsable por caso.. | Nueva (8-oct) · sin corrida |
 | [`viventa-mapa-crm`](skills/viventa-mapa-crm/SKILL.md) | CRM, canales y compras | El mapa vivo de las automatizaciones, campos, plantillas y reglas de Zoho que usa mercadeo: qué las dispara, qué hacen y quién es el dueño. | Nueva (8-oct) · sin corrida |
@@ -98,7 +98,7 @@ Tablero diario de los eventos activos (proyección y hasta 3 acciones para la ag
 
 ### `viventa-evento-aliado`
 
-El runbook de un evento con aliados —networking con constructoras, taller o webinar con negocios o consulados, punto de activación—: cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.
+El runbook de un evento con aliados (networking con constructoras, taller o webinar con negocios o consulados, punto de activación): cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.
 
 - **Le das:** El aliado, el formato y la fecha
 - **Te devuelve:** Runbook del evento y su seguimiento
@@ -135,7 +135,7 @@ Produce en Figma el primer borrador de cada formato de un brief (feed, historia,
 
 ### `viventa-versionador-piezas`
 
-Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables —evento, ciudad, país, fecha, consultora, proyecto, precio— y verifica dato por dato.
+Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables (evento, ciudad, país, fecha, consultora, proyecto, precio) y verifica dato por dato.
 
 - **Le das:** La pieza maestra + la tabla de datos variables
 - **Te devuelve:** Las versiones + tabla de control con fuente y fecha de corte de cada dato
@@ -298,7 +298,7 @@ La convocatoria completa de un evento por email y WhatsApp: 7 correos y 5 mensaj
 
 ### `viventa-kit-referidor`
 
-El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa —código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM—.
+El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa: código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM.
 
 - **Le das:** Datos del referidor nuevo
 - **Te devuelve:** Kit de activación + alta operativa

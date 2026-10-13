@@ -13,7 +13,7 @@ Las skills de Growth & Marketing de Viventa, construidas a partir de las entrevi
 | [`personas/`](personas/) | Una guía por persona: sus procesos, sus skills y por dónde empezar |
 | [`skills/`](skills/) | Las 28 skills, cada una con su `SKILL.md` y sus `references/` |
 | [`descargas/`](descargas/) | Un `.zip` por skill, listo para subir a Claude |
-| [`presentacion/`](presentacion/) | La presentación de la revisión del 7 de octubre (PDF, con las 18 skills de entonces) |
+| [`presentacion/`](presentacion/) | La presentación de la entrega, con las 28 skills (PDF) |
 | `instalar.sh` · `instalar.ps1` | Instalan las skills en Claude Code (Mac o Windows) |
 
 ## Por persona
@@ -75,7 +75,7 @@ El detalle de cada una está en el [glosario](GLOSARIO.md).
 | [`viventa-pack-evento`](skills/viventa-pack-evento/SKILL.md) | Convierte guiones y brief en la matriz de producción: una fila por archivo, copy final, nombre de archivo y el CSV que alimenta las plantillas maestras de Figma.. | Alejandra, Johana | Lista · falta primera corrida con datos reales |
 | [`viventa-qa-marca`](skills/viventa-qa-marca/SKILL.md) | Pre-filtro de la revisión de marca: revisa una pieza, copy, guion, landing, correo o plantilla de WhatsApp en 5 capas (legal de crédito, cifras, palabras prohibidas, voz, reglas del cliente y del canal), entrega las correcciones redactadas y arma el resumen del día.. | Daniel, Alejandra, Johana, Manuela, Juan, Lizeth | Corrida con material real |
 | [`viventa-monitor-evento`](skills/viventa-monitor-evento/SKILL.md) | Tablero diario de los eventos activos (proyección y hasta 3 acciones para la agencia) y ficha de cierre post-mortem: repetir, ajustar o descartar.. | Lizeth | Lista · falta primera corrida con datos reales |
-| [`viventa-evento-aliado`](skills/viventa-evento-aliado/SKILL.md) | El runbook de un evento con aliados —networking con constructoras, taller o webinar con negocios o consulados, punto de activación—: cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.. | Daniel, Lizeth | Nueva (8-oct) · sin corrida |
+| [`viventa-evento-aliado`](skills/viventa-evento-aliado/SKILL.md) | El runbook de un evento con aliados (networking con constructoras, taller o webinar con negocios o consulados, punto de activación): cronograma inverso de 4 a 6 semanas, responsables, checklist logístico, quién presenta qué, piezas en formato brief y seguimiento con meta de registros.. | Daniel, Lizeth | Nueva (8-oct) · sin corrida |
 
 **Producción de piezas y video** — Del brief al archivo: el equipo pasa de producir desde cero a ajustar y aprobar.
 
@@ -83,7 +83,7 @@ El detalle de cada una está en el [glosario](GLOSARIO.md).
 |---|---|---|---|
 | [`viventa-corte-video-pauta`](skills/viventa-corte-video-pauta/SKILL.md) | Arma el primer corte de los videos de pauta a partir del material grabado: elige la mejor toma de cada línea del guion, quita silencios, quema subtítulos y exporta en 9:16, 4:5 y 1:1 con la lista de decisiones de edición.. | Johana | Nueva (8-oct) · sin corrida |
 | [`viventa-piezas-figma`](skills/viventa-piezas-figma/SKILL.md) | Produce en Figma el primer borrador de cada formato de un brief (feed, historia, carrusel, estático de pauta, correo, landing, impreso) con la librería de componentes y el manual de la marca, listo para que diseño ajuste y apruebe.. | Alejandra, Daniel | Nueva (8-oct) · sin corrida |
-| [`viventa-versionador-piezas`](skills/viventa-versionador-piezas/SKILL.md) | Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables —evento, ciudad, país, fecha, consultora, proyecto, precio— y verifica dato por dato.. | Johana, Alejandra | Nueva (8-oct) · sin corrida |
+| [`viventa-versionador-piezas`](skills/viventa-versionador-piezas/SKILL.md) | Saca todas las versiones de una pieza maestra (flyer, video de primera etapa, carrusel, estática o pieza de proyecto) desde una tabla de datos variables (evento, ciudad, país, fecha, consultora, proyecto, precio) y verifica dato por dato.. | Johana, Alejandra | Nueva (8-oct) · sin corrida |
 
 **Requerimientos y aprobación** — Que nada arranque con un pedido incompleto ni se apruebe tres veces.
 
@@ -121,7 +121,7 @@ El detalle de cada una está en el [glosario](GLOSARIO.md).
 
 | Skill | Para qué | Quién | Estado |
 |---|---|---|---|
-| [`viventa-kit-referidor`](skills/viventa-kit-referidor/SKILL.md) | El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa —código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM—.. | Lizeth, Alejandra | Funciona sin montos · falta documento del programa |
+| [`viventa-kit-referidor`](skills/viventa-kit-referidor/SKILL.md) | El alta de un Referidor Pro: texto del flyer, correo de bienvenida, 3 mensajes reenviables en su voz y el alta operativa: código, link con seguimiento, pedido de regla de asignación a comercial y tarea de seguimiento en el CRM.. | Lizeth, Alejandra | Funciona sin montos · falta documento del programa |
 | [`viventa-ciclo-referidor`](skills/viventa-ciclo-referidor/SKILL.md) | Lo que pasa después de activar al referidor: su parrilla mensual, 3 correos para reactivarlo cuando deja de referir y el correo de resultados del consultor.. | Lizeth | Funciona sin montos · falta documento del programa |
 | [`viventa-conciliacion-referidos`](skills/viventa-conciliacion-referidos/SKILL.md) | Cruza referidos, cierres y pagos de los programas de referidos con los exports de Zoho: a quién se le debe, desde cuándo y por qué no se creó la tarea de pago, con causa probable, acción y responsable por caso.. | Lizeth | Nueva (8-oct) · sin corrida |
 
