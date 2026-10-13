@@ -31,7 +31,7 @@ Ordenados por frecuencia en el VOC 90D. La columna "uso en copy" es la instrucci
 
 | # | Dolor | Evidencia (verbatim / objeción) | Fuente | Uso en copy |
 |---|---|---|---|---|
-| D1 | Los eventos siempre son en el condado de al lado y no maneja hasta allá | *"…van a Miami y nunca he visto uno acá en Broward, como que si todos los Colombianos viviéramos en Miami-Dade… mi no se me ha perdido nada por allá abajo para hacer ese viaje"* — @cliente | VOC 90D, verbatim 24 · fricción #1 | El hook nombra el condado/ciudad y la dirección exacta. Es el callout de territorio. |
+| D1 | Los eventos siempre son en el condado de al lado y no maneja hasta allá | *"…van a Miami y nunca he visto uno acá en Broward, como que si todos los Colombianos viviéramos en Miami-Dade… mi no se me ha perdido nada por allá abajo para hacer ese viaje"* | VOC 90D, verbatim 24 · fricción #1 | El hook nombra el condado/ciudad y la dirección exacta. Es el callout de territorio. |
 | D2 | Desconfianza de fondo: "desde tan lejos uno nunca sabe" | *"Eso realmente es algo de confianza? Porque es que colombia todo es robo."* · *"uno desde tan lejos siempre maneja la desconfianza"* | VOC 90D, verbatim 19 + journey cliente | Prueba dura antes que adjetivo: 20 años, 5 bancos, oficinas físicas en 3 países. |
 | D3 | "No sé si califico y no quiero que me digan que no" | Objeción #4: miedo a presentar taxes por el estatus migratorio | `Manejo de Objeciones.docx` #4 | Ángulo "primero saber, después decidir". **Nunca prometer aprobación.** |
 | D4 | "La tasa en Colombia es mucho más alta que acá" | *"En Colombia intereses de un 10% anual… hay que poner el 30% del valor. Mal negocio desde donde se mire"* | VOC 90D verbatim 20 + Objeción #3 | Reencuadre por tasa de cambio y plazo real. **Sin dar cifras de tasa** (Reg Z). |
@@ -50,7 +50,7 @@ Framework obligatorio del cliente (acordado en reunión del 29-jul-2026).
 - **Miedo** — lo que pasa si NO actúa y se queda donde está.
 - **Deseo** — cómo quiere su futuro.
 
-**En esta categoría el miedo pesa más que el dolor.** Mateo, textual: *"creo que aquí no hay
+**En esta categoría el miedo pesa más que el dolor.** Dicho en la reunión de diagnóstico: *"creo que aquí no hay
 tanto dolor, pero sí hay un miedo…"*. Los tres miedos nombrados en la reunión, y que deben
 aparecer explícitamente mapeados en el bloque de dolores del entregable:
 
@@ -147,7 +147,7 @@ nada.
 
 1. `references/voice-of-customer-90d.md`
    — 30 verbatims Tier A ya clasificados, 4 fricciones operativas, 4 sub-segmentos. **Mina principal.**
-2. `{{config.sources.documents_dir}}/Playbook comercial y objeciones /Manejo de Objeciones.docx`
+2. `Documentación Viventa/Playbook comercial y objeciones /Manejo de Objeciones.docx`
    — 6+ objeciones con su manejo canónico. Es también la referencia de **cómo suena Viventa**.
    ⚠️ El directorio tiene un **espacio final** en el nombre. Citarlo entre comillas en cualquier comando.
 3. Comentarios frescos del post/anuncio más reciente del territorio, si están a mano. **Opcional.**

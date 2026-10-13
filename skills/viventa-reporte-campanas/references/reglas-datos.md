@@ -2,7 +2,7 @@
 
 Fuentes canónicas (mandan sobre cualquier input):
 - `references/cifras-canonicas.md`
-- `{{config.sources.documents_dir}}/CAC_POR_CANAL.md`
+- `Documentación Viventa/CAC_POR_CANAL.md`
 - `references/contexto-viventa.md`
 
 ---

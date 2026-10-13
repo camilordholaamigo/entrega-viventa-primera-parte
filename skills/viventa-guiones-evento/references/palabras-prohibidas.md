@@ -14,7 +14,7 @@
 | **C** | **Trigger terms de cuota / plazo / inicial** | "Cuotas desde $X al mes" · "Solo 10% de cuota inicial" · "A 20 años" · "Sin cuota inicial" | Preferido: *"Hay opciones para presupuestos muy distintos."* Si el brief exige la cifra: mantenerla **con disclaimer igual de prominente en pantalla** ("Sujeto a evaluación crediticia. Condiciones en viventa.co") — no en letra chica al final |
 | **D** | **Producto o cobertura no confirmada** | "Trabajamos con VA loan" · "Aceptamos ITIN" · "Financiamos vivienda usada" · "Aplicamos para Canadá / Puerto Rico" | **Bloqueante hasta confirmación del brief o de Crédito.** Alternativa: *"¿Eres veterano y tienes un VA loan? Ven al evento y te decimos exactamente qué aplica en tu caso."* (pregunta, no afirmación) |
 | **E** | **Cifras de negocio y jerga** | "El mercado crece 42%" · mezclar CPL con CAC · confundir conversión a desembolso ([cifra interna]) con conversión a pago de servicio ([cifra interna]) · LTV, DTI, amortización, preaprobado, buró sin traducir | +42% = **participación del segmento no residentes**, nunca "crecimiento de mercado". Jerga: traducción funcional en la misma frase (*"DTI"* → *"cuánto de tu ingreso ya está comprometido en deudas"*) |
-| **F** | **Voz de marca** (no legal, pero bloqueante para Daniel) | "unlock" · "leverage" · "solución integral" · "aliado estratégico" · "inversión inmobiliaria" · lenguaje de banco. Españolismos: "vosotros", "vale", "guay", "coger" (sentido peninsular), "tío/tía" | *patrimonio* en vez de *inversión*. Tuteo colombiano. Frases cortas. Prueba concreta antes que adjetivo |
+| **F** | **Voz de marca** (no legal, pero bloqueante para el aprobador de marca) | "unlock" · "leverage" · "solución integral" · "aliado estratégico" · "inversión inmobiliaria" · lenguaje de banco. Españolismos: "vosotros", "vale", "guay", "coger" (sentido peninsular), "tío/tía" | *patrimonio* en vez de *inversión*. Tuteo colombiano. Frases cortas. Prueba concreta antes que adjetivo |
 
 ---
 
@@ -72,7 +72,7 @@ cuota y plazo los da el asesor en llamada.
 
 ---
 
-## Checklist fijo "lo que NO se puede decir en anuncios" (para Johana)
+## Checklist fijo "lo que NO se puede decir en anuncios" (para la productora de video)
 
 - [ ] Nada de tasa, cuota mensual, plazo ni cuota inicial.
 - [ ] Nada de "te aprobamos", "aprobación garantizada", "todos califican".

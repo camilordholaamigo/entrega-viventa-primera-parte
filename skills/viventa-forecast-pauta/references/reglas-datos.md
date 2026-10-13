@@ -47,7 +47,7 @@ Cada uno con la razón, porque sin la razón se vuelven a cometer.
    corrido es 2, lo que falta es 4. Sumarlas duplica el cierre proyectado.
 
 2. **Leer capa 1 baja como "vamos bien".** Contabilidad cierra tarde. Capa 1 vacía al día 15 es lo
-   normal, no una buena noticia. **Es el origen literal de la sobre-ejecución que reportó Lizeth.**
+   normal, no una buena noticia. **Es el origen literal de la sobre-ejecución que reportó la gerente de Growth.**
 
 3. **Descartar capa 3 porque "no está aprobada".** Ya se gastó; falta el trámite.
 

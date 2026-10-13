@@ -39,9 +39,9 @@ dirección ya se conoce, y quién propuso el evento (compañía vs. consultora).
   de 7 días para salir de aprendizaje. Debajo de eso la entrega es inestable **indefinidamente** —
   esperar no lo arregla. Además, **todo cambio grande de presupuesto, público o creativo resetea el
   aprendizaje**; por eso optimizar a mitad de campaña sale caro.
-- **~5 días de producción** del pack completo, sobre **una sola productora de video** (Johana Osorio)
-  y **una sola diseñadora** (Alejandra Moreno), con 3+ eventos al mes.
-- **Margen de revisión humana.** Ninguna campaña sale al aire sin revisión, y Daniel Vélez es el
+- **~5 días de producción** del pack completo, sobre **una sola productora de video**
+  y **una sola diseñadora**, con 3+ eventos al mes.
+- **Margen de revisión humana.** Ninguna campaña sale al aire sin revisión, y hay un
   único aprobador de marca.
 
 `[⚠ no verificado]` El número **45 es regla interna de Viventa**, no se deriva de una fuente externa.
@@ -66,7 +66,7 @@ termina en reproceso.
 | **Fecha** | Sin fecha no hay semáforo ni cronograma de producción | Quien propuso el evento |
 | **Hora de inicio y de cierre** | Va en flyer, video y voz en off | Quien propuso el evento |
 | **Modalidad** | Modula meta, dirección esperada y origen | Quien propuso el evento |
-| **N.º de ejecutivas que atienden** | Es la variable independiente de la meta de leads | Lizeth Henríquez |
+| **N.º de ejecutivas que atienden** | Es la variable independiente de la meta de leads | Gerente de Growth |
 
 Campos **no bloqueantes** que igual se piden si faltan: consultoras asignadas y sus datos de
 contacto, audiencia objetivo (¿solo país local o también colombianos en USA?), presupuesto de pauta,

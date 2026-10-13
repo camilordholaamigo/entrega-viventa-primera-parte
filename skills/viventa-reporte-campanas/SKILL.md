@@ -1,54 +1,109 @@
 ---
 name: viventa-reporte-campanas
 description: >-
-  Consolida el desempeño de Growth & Marketing de Viventa (Zoho CRM, Meta, Google, email, GA4)
-  en un reporte de 2 páginas con lectura en prosa, 3 hallazgos, 3 alertas y 3 recomendaciones
-  con dueño. En modo mensual agrega rendimiento por formato y el insumo que alimenta la parrilla
-  del mes siguiente. Toda cifra declara fuente, ventana y universo; lo que no cumple esas tres
-  cosas no se emite y se lista en "Métricas NO emitidas y por qué". No lanza ni aprueba nada.
+  Consolida el desempeño de Growth & Marketing de Viventa (Zoho CRM, Meta, Google, email, GA4, paneles
+  de metas) en 2 páginas: meta contra real por proceso (reactivación, orgánico, pauta, referidos),
+  lectura en prosa, hasta 3 hallazgos, 3 alertas y 3 recomendaciones con dueño; en mensual, CPL, CAC y
+  conversión por evento y canal. Toda cifra declara fuente, ventana y universo o va a "no emitidas".
+  USA cuando: "cómo vamos contra la meta del mes", "sacá el reporte de campañas de la semana", "cuál
+  es el CPL por evento". viventa-monitor-evento sigue un evento.
 metadata:
-  version: "1.0.0"
+  version: "1.2.0"
   domain: "analyze"
   client: "viventa"
   blueprint: "marketing"
-  complexity: "complex"
+  complexity: "standalone"
 ---
 
 # viventa-reporte-campanas
 
-Convierte el export de datos del área en **una lectura**, no en una tabla. Semanal o mensual,
-multicanal, consolidado.
+Convierte el export de datos del área en **una lectura**, no en una tabla. Semanal (default) o
+mensual, multicanal, consolidado. Invariantes: toda cifra declara fuente, ventana y universo;
+negarse a emitir es output válido; el reporte **no lanza, no pausa, no aprueba nada** (la cuenta de
+pauta la opera una agencia externa). **Una sola pasada**: sin loops ni research, porque las cuentas
+de IA son compartidas y se quedan sin créditos hasta 4 horas.
 
-**Frontera con `viventa-monitor-evento`:** ese skill es **diario y por evento** (umbrales,
-proyección, veredicto de plaza, cortes T+0/30/90/180). Este es el **consolidado del área**. Aquí
-**Eventos es una fila de la tabla**, no un objeto con lógica propia. Si te preguntan "¿cómo va
-Tampa?" → eso es el otro skill; decilo y no lo hagas acá.
+## Cuándo usar
 
-**Cómo se invoca:**
-- Semanal → `/viventa-reporte-campanas semanal` (modo por defecto).
-- Mensual → `/viventa-reporte-campanas mensual`.
-Si no dicen cuál, asumí semanal y decilo en el encabezado.
+- Explícito: "sacá el reporte de campañas de la semana", "cómo nos fue este mes en marketing",
+  "consolidá las métricas de todos los canales", "necesito el reporte para gerencia", "por qué
+  bajaron los leads", "cuánto nos costó el lead este mes", "armá el consolidado mensual del área".
+- Modo: `semanal` (default) o `mensual`. Si no lo dicen, semanal, declarado en el encabezado.
 
-**Restricciones que gobiernan todo:**
-- **Una sola pasada.** Sin loops, sin research en tiempo de ejecución, sin llamadas externas.
-  Las cuentas de IA son compartidas y con límite (hasta 4 horas de espera si se agotan créditos).
-- **El reporte no lanza, no pausa, no aprueba nada.** Termina en un entregable para revisión
-  humana. La cuenta de pauta la opera una agencia externa.
-- **Español de Colombia, tuteo, frases cortas.** Prohibida la jerga de consultora: "solución
-  integral", "aliado estratégico", "leverage", "unlock", "palanca", "accionable", "insight
-  clave", "de cara a".
-- Output en markdown con tablas, copiable a Google Sheets/Slides sin conversión.
-- Los `[⚠ no verificado]` del input **sobreviven** al reporte como advertencia visible. No se
-  limpian, no se redondean, no se convierten en afirmación.
+## Cuándo NO usar
 
-**Referencias (cargar solo la que toque, no las dos de entrada):**
-- `references/reglas-datos.md` — cifras canónicas, tabla de comparabilidad, fuente que manda por
-  métrica, anti-patterns con antídoto.
-- `references/plantillas.md` — plantilla exacta semanal y mensual + ejemplo recortado.
+- "¿Cómo va {el evento de ciudad}?" o el cierre de un evento → `viventa-monitor-evento`. Acá Eventos
+  es una fila de la tabla, sin umbrales diarios ni veredicto de plaza.
+- Cuánto va a cerrar el gasto de pauta este mes → `viventa-forecast-pauta`.
+- Qué publicó la competencia → `viventa-radar-competencia`.
 
----
+## Input del usuario
 
-## LA REGLA NÚCLEO: fuente + ventana + universo
+| Campo | De dónde sale | Si falta, preguntar |
+|---|---|---|
+| Export de Zoho CRM: leads por fuente + cierres, con fecha de creación | Admin de CRM | *"Pegame el export de Zoho con leads por fuente y cierres, con fecha de creación."* **Bloquea**: sin Zoho no hay página 1 |
+| Inversión por canal (Meta Ads Manager, Google Ads) | Agencia de pauta / plataformas | *"¿Tenés la inversión por canal del periodo?"* Si no: se emite volumen sin CPL y toda casilla de costo dice `no emitible — falta inversión` |
+| Periodo y periodo de comparación | El usuario | *"¿Qué periodo reporto y contra cuál lo comparo?"* **Bloquea**: no se asume por la fecha de hoy |
+| Modo (semanal / mensual) | El usuario | No se pregunta: semanal, declarado en el encabezado |
+| Email (Zoho Campaigns), GA4, Wati | Plataformas | No se pregunta: la fila va como `sin dato este periodo`. No se estima |
+| Rango de las últimas 6 semanas por canal | Reportes anteriores | No se pregunta: sin él se dice "sin referencia histórica", nunca "dentro del rango normal" |
+| Split de origen del lead de evento | Zoho (campo de origen) | *"¿El export separa los leads de evento por origen (pauta / base / comercial / walk-in)?"* Si no: protocolo de eventos → CPL Eventos `no emitible` |
+| Valor por operación de Vive Casas | Dirección comercial | No se pregunta cada periodo: sin él, Eventos → "rentabilidad no calculable" |
+| Ventanas de atribución configuradas (Meta, Google) | Agencia de pauta | No se pregunta cada periodo: sin ellas, condición de negativa #2 en todo cociente cross-fuente |
+| Cifras canónicas | `references/cifras-canonicas.md` | Si no está accesible: se usan las de `references/reglas-datos.md` y se declara en el encabezado |
+| Mes siguiente (solo mensual) | El usuario o el calendario | — |
+| Metas del periodo por proceso (reactivación, orgánico, pauta, referidos, alianzas) | Paneles de metas del área (el de reactivación es diario) | *"¿Me pasas las metas del mes por proceso y lo que marca hoy cada panel?"* Sin metas, la sección METAS POR PROCESO dice `sin meta cargada` por fila; nunca se infiere una meta |
+| Llave común lead → campaña → cliente | Datos y analítica (ID de Zoho + campaña UTM o campo de origen) | Setup, una vez: *"¿Cuál es el campo que une el lead con su campaña y con el cierre?"* Mientras falte, CAC y conversión por evento y canal → `no emitible — falta llave común` |
+
+**Los 4 inputs de setup** (campo de origen en Zoho · valor por operación de Vive Casas · ventanas
+de atribución declaradas · llave común lead → campaña → cliente) se piden **una vez**, no cada periodo. Mientras falten, cada reporte
+los repite en "Métricas NO emitidas y por qué" hasta que alguien los resuelva.
+
+## Workflow
+
+Seis fases en una pasada. Las reglas de las que dependen (regla núcleo, condiciones de negativa, protocolo de eventos, escalera de lectura) van después de las fases, en este mismo Workflow.
+
+### Fase 1 — Normalizar y etiquetar
+Para cada cifra del input, escribí su terna **fuente / ventana / universo**. La que no tenga las
+tres, se marca candidata a no emitible. Esto se hace **antes** de calcular nada.
+
+### Fase 1b — Meta contra real por proceso
+Por cada proceso con meta: real del periodo, % de cumplimiento, ritmo diario necesario para cerrar
+el mes y si va adelante, en línea o atrás. El real sale de la misma fuente que alimenta el panel de
+metas; si el panel y Zoho no coinciden, manda Zoho y la diferencia va a hallazgos o a no emitidas.
+Los reactivados por WhatsApp de `viventa-puente-wati-zoho` cuentan en reactivación solo si ya están
+cargados en Zoho.
+
+### Fase 2 — Correr las 6 condiciones de negativa
+Sobre cada métrica derivada (CPL, CAC, conversión, blended). La que dispare cualquier condición
+se saca de la tabla y entra a la lista de no emitidas con causa y desbloqueador.
+
+### Fase 3 — Localizar y descomponer
+Ubicá dónde está cada variación (nivel 1). Descomponé volumen vs mezcla (nivel 2). Si cayó una
+tasa agregada, corré la descomposición de mezcla **antes** de pensar en causas.
+
+### Fase 4 — Causa o hipótesis
+Aplicá el requisito de las tres condiciones. Lo que no las cumple sale con plantilla de hipótesis.
+Revisá la lista negra antes de escribir cualquier explicación.
+
+### Fase 5 — Jerarquizar 3/3/3
+Una métrica sube a página 1 solo si **su movimiento cambia una decisión del periodo entrante**:
+mover plata, pausar algo, pedir un dato, activar una campaña. Si no cambia nada, va al anexo
+aunque sea grande.
+
+**Tope duro: máximo 3 hallazgos, 3 alertas, 3 recomendaciones.** Menos también es válido: una
+semana plana puede tener 1 hallazgo. **Inventar el tercer hallazgo para llenar la plantilla es la
+falla más cara de este skill.**
+
+Cada recomendación lleva **verbo concreto + dueño sugerido + ejecutable en el periodo entrante**.
+Dueños posibles: diseño · gerente de Growth · agencia de pauta · admin de CRM.
+*"Revisar la estrategia de canales"* no es una recomendación.
+
+### Fase 6 — Redactar y autovalidar
+Armá el output con la plantilla de `references/plantillas.md` y corré el checklist de abajo antes
+de entregar. Un `no` = no se entrega: se corrige y se vuelve a chequear.
+
+### LA REGLA NÚCLEO: fuente + ventana + universo
 
 **Toda cifra del reporte declara tres cosas. Sin las tres, no se emite.**
 
@@ -80,7 +135,7 @@ Cuando dos fuentes discrepan: se muestran **las dos** con nombre y fecha, se dec
 manda**, y se reporta el **delta en %**. Nunca se suman, nunca se promedian, nunca se elige una
 en silencio.
 
-### Qué se puede comparar con qué
+#### Qué se puede comparar con qué
 
 | Comparación | ¿Válida? | Condición |
 |---|---|---|
@@ -99,9 +154,7 @@ literal: Meta trae ~43% del volumen y es el **peor** ROI del stack ([cifra inter
 ([cifra interna] loaded) convierte 4.19%.
 → **CPL sin conversión al lado está prohibido en página 1.**
 
----
-
-## LAS 6 CONDICIONES DE NEGATIVA
+### LAS 6 CONDICIONES DE NEGATIVA
 
 Cuando se cumple **cualquiera**, la métrica **no se emite**. La casilla dice `no emitible`, con
 una línea de causa y una línea de qué dato la desbloquea. Y la métrica entra en la sección
@@ -122,9 +175,7 @@ lectura obligatoria para gerencia: cada línea ahí es un pendiente de instrumen
 Y la regla que las cubre a todas: **nunca estimar, promediar ni "aproximar" para llenar una
 casilla.** Una cifra inventada es peor que una casilla vacía, porque se vuelve citable.
 
----
-
-## PROTOCOLO DE LEADS DE EVENTO (4 pasos, obligatorio)
+### PROTOCOLO DE LEADS DE EVENTO (4 pasos, obligatorio)
 
 Este es el caso vivo de universo mezclado. Los leads de evento entran a un solo campo del CRM
 mezclando **pauta**, **base propia** y **fuerza comercial**. Dividir la inversión entre todos da
@@ -146,9 +197,7 @@ del Servicio Viventa es **$480 USD** → [cifra interna] por cierre. Pero eso so
 llegue, la fila Eventos dice **"rentabilidad no calculable"** — no "negativa", no "ruinosa", no
 "rentable". Es un input de setup, no un cálculo.
 
----
-
-## DE NÚMERO A LECTURA: la escalera de 4 niveles
+### DE NÚMERO A LECTURA: la escalera de 4 niveles
 
 El skill siempre sabe en qué escalón está parado y **redacta distinto en cada uno**.
 
@@ -161,7 +210,7 @@ El skill siempre sabe en qué escalón está parado y **redacta distinto en cada
 
 Todo hallazgo llega **mínimo a nivel 1**. Nivel 0 no se publica nunca.
 
-### Antes de buscar causa: descomposición de mezcla (paradoja de Simpson)
+#### Antes de buscar causa: descomposición de mezcla (paradoja de Simpson)
 
 **Obligatorio cuando cae una tasa agregada.** Una tasa global puede caer sin que **ningún canal
 empeore**, solo porque cambió la proporción entre segmentos. Ejemplo Viventa: si el mes pasado
@@ -172,7 +221,7 @@ la conversión global cae y **nadie empeoró**.
 es el hallazgo**, y la redacción correcta es *"no empeoró ningún canal; cambió la mezcla hacia
 canales de menor conversión"* — nunca *"cayó la conversión"*.
 
-### Requisito para afirmar causa (las tres, sin excepción)
+#### Requisito para afirmar causa (las tres, sin excepción)
 
 1. **Un dato del input que cambió antes o junto con el efecto** (subió la frecuencia, se pausó un
    ad set, cambió el presupuesto, entró una campaña de email, hubo un evento en la ciudad).
@@ -181,7 +230,7 @@ canales de menor conversión"* — nunca *"cayó la conversión"*.
 
 Si falta una → es hipótesis. Sin excepción.
 
-### Plantilla fija de hipótesis (tres partes, nunca menos)
+#### Plantilla fija de hipótesis (tres partes, nunca menos)
 
 > **Hipótesis:** [causa candidata, en una frase].
 > **Qué la confirmaría:** [dato específico, con el corte y el umbral que la volvería afirmación].
@@ -190,10 +239,7 @@ Si falta una → es hipótesis. Sin excepción.
 Si la **misma hipótesis aparece 3 periodos seguidos sin confirmarse**, se escala a **alerta de
 instrumentación**: el problema ya no es la campaña, es que no tenemos el dato.
 
-### 🚫 Lista negra: causas prohibidas sin evidencia
-
-Estas son exactamente las que un LLM pone por defecto porque dominan su corpus, y las entrega
-con **confianza alta** — el caso que los chequeos de confianza no atrapan.
+#### 🚫 Lista negra: causas prohibidas sin evidencia
 
 **Ninguna de estas se puede afirmar sin una cifra del input al lado:**
 
@@ -208,175 +254,7 @@ con **confianza alta** — el caso que los chequeos de confianza no atrapan.
 Todas son hipótesis legítimas. **Ninguna es una conclusión legítima** sin la cifra al lado. Si
 vas a nombrarlas, van con la plantilla de hipótesis de arriba.
 
----
-
-## FASES
-
-### Fase 0 — Inputs (qué pedir y qué hacer si falta)
-
-| Input | Obligatorio | Si falta |
-|---|---|---|
-| Export de Zoho CRM: leads por fuente + cierres, con fecha de creación | ✅ | **No se emite el reporte.** Sin Zoho no hay página 1. Pedilo y parás |
-| Inversión por canal (Meta Ads Manager, Google Ads) | ✅ | Se emite volumen sin CPL. Toda casilla de costo → `no emitible — falta inversión` |
-| Periodo y periodo de comparación | ✅ | Preguntá. **No lo asumas** por la fecha de hoy |
-| Modo (semanal / mensual) | ⚠ | Asumí semanal y decilo en el encabezado |
-| Email (Zoho Campaigns), GA4, Wati | ⚠ | Esa fila va como `sin dato este periodo`. No se estima |
-| Rango de las últimas 6 semanas por canal | ⚠ | Sin él no podés decir "dentro del rango normal". Decí "sin referencia histórica" |
-| **Split de origen del lead de evento** | ⚠ | Protocolo de 4 pasos → CPL Eventos `no emitible` |
-| **Valor por operación de Vive Casas** | ⚠ | Eventos → **"rentabilidad no calculable"**. Es setup, no cálculo |
-| Ventanas de atribución configuradas (Meta, Google) | ⚠ | Condición de negativa #2 en todo cociente cross-fuente |
-
-**Los 3 inputs de setup** (campo de origen en Zoho · valor por operación de Vive Casas · ventanas
-de atribución declaradas) se piden **una vez**, no cada periodo. Mientras falten, cada reporte
-los repite en "Métricas NO emitidas y por qué" hasta que alguien los resuelva.
-
-### Fase 1 — Normalizar y etiquetar
-Para cada cifra del input, escribí su terna **fuente / ventana / universo**. La que no tenga las
-tres, se marca candidata a no emitible. Esto se hace **antes** de calcular nada.
-
-### Fase 2 — Correr las 6 condiciones de negativa
-Sobre cada métrica derivada (CPL, CAC, conversión, blended). La que dispare cualquier condición
-se saca de la tabla y entra a la lista de no emitidas con causa y desbloqueador.
-
-### Fase 3 — Localizar y descomponer
-Ubicá dónde está cada variación (nivel 1). Descomponé volumen vs mezcla (nivel 2). Si cayó una
-tasa agregada, corré la descomposición de mezcla **antes** de pensar en causas.
-
-### Fase 4 — Causa o hipótesis
-Aplicá el requisito de las tres condiciones. Lo que no las cumple sale con plantilla de hipótesis.
-Revisá la lista negra antes de escribir cualquier explicación.
-
-### Fase 5 — Jerarquizar 3/3/3
-Una métrica sube a página 1 solo si **su movimiento cambia una decisión del periodo entrante**:
-mover plata, pausar algo, pedir un dato, activar una campaña. Si no cambia nada, va al anexo
-aunque sea grande.
-
-**Tope duro: máximo 3 hallazgos, 3 alertas, 3 recomendaciones.** Menos también es válido: una
-semana plana puede tener 1 hallazgo. **Inventar el tercer hallazgo para llenar la plantilla es la
-falla más cara de este skill.**
-
-Cada recomendación lleva **verbo concreto + dueño sugerido + ejecutable en el periodo entrante**.
-Dueños posibles: Alejandra · Lizeth · agencia de pauta · admin de CRM.
-*"Revisar la estrategia de canales"* no es una recomendación.
-
-### Fase 6 — Redactar y autovalidar
-Armá el output con la plantilla de `references/plantillas.md` y corré el checklist de abajo antes
-de entregar.
-
----
-
-## OUTPUT: 2 páginas, estructura fija
-
-**Página 1 — la lectura**
-1. Encabezado: periodo · comparación · fecha de emisión · **fuentes** · cierre de datos.
-2. **LO QUE PASÓ** — prosa, 4-6 líneas. Una lectura, no una lista de números.
-3. **HALLAZGOS (máx. 3)** — cada uno con *Evidencia: [fuente, corte, periodo]*.
-4. **ALERTAS (máx. 3)** — 🔴 bloquea / 🟠 hay que resolver / 🟡 vigilar.
-5. **RECOMENDACIONES (máx. 3)** — tabla: qué hacer · por qué · dueño sugerido.
-6. Recordatorio: *ninguna de estas acciones lanza pauta; todas terminan en revisión humana.*
-
-**Página 2 — tabla y anexo**
-7. **Tabla por canal**, con **columna de fuente por fila**: Canal · Leads · Δ · Inversión ·
-   CPL (costo por lead) + conversión · Fuente.
-8. **Nota del blended** — denominador explícito (solo leads pagados).
-9. **Anexo** (no requiere lectura): impresiones, alcance, CTR, CPM, aperturas/clics de email,
-   sesiones GA4, seguidores, detalle por ad set.
-10. **MÉTRICAS NO EMITIDAS ESTA SEMANA Y POR QUÉ** — sección obligatoria. Si no hay ninguna,
-    escribí *"Ninguna."* La sección **nunca se omite**.
-
-**Variante mensual** — misma estructura, cinco diferencias:
-1. Agrega **conversión por cohorte**: a desembolso ([cifra interna]) y a pago de servicio ([cifra interna]), en filas
-   **separadas y etiquetadas**.
-2. Agrega **CAC por canal vs baseline** y composición geográfica.
-3. Compara contra **mismo mes del año anterior**. Si se usa mes anterior, se normaliza por días
-   hábiles y se dice explícitamente.
-4. Agrega **rendimiento por formato** (ver abajo).
-5. Agrega **INSUMO PARA LA PARRILLA** (ver abajo). Es la única sección que mira hacia adelante.
-
-Plantilla literal y ejemplo recortado: `references/plantillas.md`.
-
----
-
-## RENDIMIENTO POR FORMATO (solo mensual)
-
-Responde *"qué contenido funcionó"* sin caer en opinión de creativo. Corte por **formato**, no por
-pieza: video vertical · video 1:1 · carrusel · estática · flyer por consultora · email · WhatsApp.
-
-Tabla: Formato · Piezas activas · Leads · Δ vs mes anterior · CPL · Fuente.
-
-Tres reglas propias, además de las generales:
-
-1. **Se hereda el piso de volumen.** Ningún CPL por formato con menos de 30 leads. Un formato bajo
-   el piso aparece en la tabla con `n/d (bajo piso)` — no se omite, porque su ausencia también
-   es información.
-2. **Formato ≠ ángulo ≠ creativo.** Este corte dice qué **envase** rindió. Por qué rindió es
-   hipótesis, y va con la plantilla de hipótesis como cualquier otra causa. Prohibido escribir
-   *"el video funciona mejor"* como conclusión cerrada sobre 1 mes.
-3. **Meta Special Ad Category cambia la lectura.** Desde el 14-ene-2025 no hay segmentación por
-   edad, género ni código postal en productos financieros: el hook sustituye al targeting. Una
-   diferencia entre formatos puede ser diferencia de hook, no de envase. Si no se puede separar,
-   se dice.
-
----
-
-## INSUMO PARA LA PARRILLA (solo mensual)
-
-**La razón por la que existe esta sección:** hasta ahora el reporte producía recomendaciones y ahí
-moría. Nada devolvía el aprendizaje del mes a la planificación del mes siguiente. Este bloque es
-esa bisagra, y su consumidor es `viventa-parrilla-base`.
-
-Máximo 5 líneas. Cada una con esta forma exacta:
-
-> **{segmento o formato}** — {qué hizo} · Evidencia: [fuente, corte, periodo] · **Para la parrilla:**
-> {subir / sostener / bajar / probar} — {qué cambio concreto}
-
-Reglas, todas bloqueantes:
-
-1. **Solo entra lo que ya pasó las 6 condiciones de negativa.** Una línea que no sobrevivió el
-   filtro de la Fase 2 no puede reaparecer acá con otro nombre. Esta sección no es una segunda
-   oportunidad para métricas que no calificaron.
-2. **"Sin señal suficiente" es una salida válida y frecuente.** Si el mes no produjo nada que
-   cambie la parrilla, la sección dice literalmente *"Sin señal suficiente para modificar la
-   parrilla de {mes entrante}. Se sostiene la vigente."* **Inventar una señal para llenar este
-   bloque es la misma falla que inventar el tercer hallazgo, y cuesta más caro: acá se propaga
-   a la planificación.**
-3. **No propone piezas ni copies.** Dice qué mover; el qué escribir es de `viventa-parrilla-base`.
-4. **No reemplaza las recomendaciones.** Aquellas son acciones del periodo entrante con dueño;
-   esto es insumo de planificación. Pueden coincidir, y si coinciden se dice.
-5. **Se etiqueta el alcance.** Una señal de un solo canal se marca como tal — no se generaliza a
-   la base entera.
-
----
-
-## REGLAS DE DATOS — no negociables
-
-Si se rompe una, el reporte **no pasa QA**. Detalle completo en `references/reglas-datos.md`.
-
-1. **CPL ≠ CAC.** CPL = costo por **lead**. CAC = costo por **cierre**. Etiquetados siempre en el
-   encabezado de columna: `CPL (costo por lead)`, `CAC (costo por cierre)`. **Nunca** una columna
-   llamada solo "costo". El lead de Meta cuesta [cifra interna]; el **cierre** de Meta cuesta ~[cifra interna]
-   (ad-spend) / **[cifra interna]** (fully-loaded).
-2. **Las dos conversiones son dos KPIs.** Conversión a **desembolso = [cifra interna]** ([cifra interna] cierres).
-   Conversión a **pago de servicio = [cifra interna]** (939 pagos). Nunca se suman, nunca se intercambian,
-   nunca "conversión global" sin decir cuál.
-3. **El +42% es participación del segmento no residentes** (Camacol: 8.8% → 12.5% de las ventas).
-   **NO es crecimiento de mercado** — el mercado total crece 5-12%. Prohibido escribir "el
-   mercado crece 42%".
-4. **Ticket Servicio Viventa = $480 USD.** No $495.
-5. **Ningún canal sin pauta muestra CPL $0.** Web e Instagram orgánico tienen $0 de inversión
-   pero CAC loaded de [cifra interna] y [cifra interna]. Su casilla de CPL dice **`n/a (sin pauta)`**.
-6. **El blended divide solo entre leads pagados**, con nota explícita del denominador. Dividir la
-   inversión total entre los leads totales da un número falso y citable.
-7. **Ninguna tasa con menos de 30 leads. Ningún CAC con menos de 10 cierres.**
-8. **Conversión: solo mensual y por cohorte.** Nunca semanal.
-9. **Si dos fuentes discrepan: las dos, cuál manda, y el delta %.**
-10. **El reporte no lanza nada.** Termina en un entregable para aprobar.
-11. **Ninguna cifra puede contradecir `references/cifras-canonicas.md`.** Si el input la contradice, se
-    muestran las dos y se declara que manda la canónica.
-
----
-
-## CHECKLIST DE AUTOVALIDACIÓN
+### Checklist de autovalidación (Fase 6)
 
 Corré esto **antes** de entregar. Un `no` = no se entrega.
 
@@ -422,3 +300,133 @@ Corré esto **antes** de entregar. Un `no` = no se entrega.
 - [ ] Si cayó una tasa agregada, revisé y reporté la mezcla antes de buscar causa.
 - [ ] CPL nunca aparece en página 1 sin su conversión al lado.
 - [ ] Sin jerga de consultora. Español de Colombia, tuteo, frases cortas.
+
+## Reglas duras
+
+- **Nunca lanza, pausa ni aprueba nada**: termina en un entregable para revisión humana.
+- **Nunca estima, promedia ni "aproxima" para llenar una casilla**: la casilla dice `no emitible` con causa y desbloqueador.
+- **Nunca afirma una causa de la lista negra** sin una cifra del input al lado.
+- **Nunca inventa un hallazgo, alerta o señal** para completar 3/3/3 o el insumo de parrilla.
+- **Nunca borra un `[⚠ no verificado]`** del input: sobrevive como advertencia visible.
+- **Nunca usa jerga de consultora**: "solución integral", "aliado estratégico", "leverage", "unlock", "palanca", "accionable", "insight clave", "de cara a". Español de Colombia, tuteo.
+
+### Reglas de datos
+
+Si se rompe una, el reporte **no pasa QA**. Detalle completo en `references/reglas-datos.md`.
+
+1. **CPL ≠ CAC.** CPL = costo por **lead**. CAC = costo por **cierre**. Etiquetados siempre en el
+   encabezado de columna: `CPL (costo por lead)`, `CAC (costo por cierre)`. **Nunca** una columna
+   llamada solo "costo". El lead de Meta cuesta [cifra interna]; el **cierre** de Meta cuesta ~[cifra interna]
+   (ad-spend) / **[cifra interna]** (fully-loaded).
+2. **Las dos conversiones son dos KPIs.** Conversión a **desembolso = [cifra interna]** ([cifra interna] cierres).
+   Conversión a **pago de servicio = [cifra interna]** (939 pagos). Nunca se suman, nunca se intercambian,
+   nunca "conversión global" sin decir cuál.
+3. **El +42% es participación del segmento no residentes** (Camacol: 8.8% → 12.5% de las ventas).
+   **NO es crecimiento de mercado** — el mercado total crece 5-12%. Prohibido escribir "el
+   mercado crece 42%".
+4. **Ticket Servicio Viventa = $480 USD.** No $495.
+5. **Ningún canal sin pauta muestra CPL $0.** Web e Instagram orgánico tienen $0 de inversión
+   pero CAC loaded de [cifra interna] y [cifra interna]. Su casilla de CPL dice **`n/a (sin pauta)`**.
+6. **El blended divide solo entre leads pagados**, con nota explícita del denominador. Dividir la
+   inversión total entre los leads totales da un número falso y citable.
+7. **Ninguna tasa con menos de 30 leads. Ningún CAC con menos de 10 cierres.**
+8. **Conversión: solo mensual y por cohorte.** Nunca semanal.
+9. **Si dos fuentes discrepan: las dos, cuál manda, y el delta %.**
+10. **El reporte no lanza nada.** Termina en un entregable para aprobar.
+11. **Ninguna cifra puede contradecir `references/cifras-canonicas.md`.** Si el input la contradice, se
+    muestran las dos y se declara que manda la canónica.
+
+## Output esperado
+
+Devuelve en la conversación un markdown con tablas, copiable a Google Sheets/Slides sin conversión; si se pide archivo, `salidas/viventa-reporte-campanas/{AAAA-MM-DD}-{semanal|mensual}.md`. Dos páginas, estructura fija:
+
+**Página 1 — la lectura**
+1. Encabezado: periodo · comparación · fecha de emisión · **fuentes** · cierre de datos.
+2. **METAS POR PROCESO** — tabla: proceso · meta · real · % · ritmo necesario · estado · fuente.
+3. **LO QUE PASÓ** — prosa, 4-6 líneas. Una lectura, no una lista de números.
+4. **HALLAZGOS (máx. 3)** — cada uno con *Evidencia: [fuente, corte, periodo]*.
+5. **ALERTAS (máx. 3)** — 🔴 bloquea / 🟠 hay que resolver / 🟡 vigilar.
+6. **RECOMENDACIONES (máx. 3)** — tabla: qué hacer · por qué · dueño sugerido.
+7. Recordatorio: *ninguna de estas acciones lanza pauta; todas terminan en revisión humana.*
+
+**Página 2 — tabla y anexo**
+8. **Tabla por canal**, con **columna de fuente por fila**: Canal · Leads · Δ · Inversión ·
+   CPL (costo por lead) + conversión · Fuente.
+9. **Nota del blended** — denominador explícito (solo leads pagados).
+10. **Anexo** (no requiere lectura): impresiones, alcance, CTR, CPM, aperturas/clics de email,
+   sesiones GA4, seguidores, detalle por ad set.
+11. **MÉTRICAS NO EMITIDAS ESTA SEMANA Y POR QUÉ** — sección obligatoria. Si no hay ninguna,
+    escribí *"Ninguna."* La sección **nunca se omite**.
+
+**Variante mensual** — misma estructura, seis diferencias:
+1. Agrega **conversión por cohorte**: a desembolso ([cifra interna]) y a pago de servicio ([cifra interna]), en filas
+   **separadas y etiquetadas**.
+2. Agrega **CAC por canal vs baseline** y composición geográfica.
+3. Compara contra **mismo mes del año anterior**. Si se usa mes anterior, se normaliza por días
+   hábiles y se dice explícitamente.
+4. Agrega **rendimiento por formato** (ver abajo).
+5. Agrega **INSUMO PARA LA PARRILLA** (ver abajo). Es la única sección que mira hacia adelante.
+6. Agrega el **corte por evento y canal**: leads, CPL, CAC y conversión a cliente por cada evento del
+   mes y por canal, con el protocolo de leads de evento. CAC y conversión solo con llave común y con
+   al menos 5 cierres en la celda; si no, `no emitible — muestra` en esa celda, nunca un número.
+
+Plantilla literal y ejemplo recortado: `references/plantillas.md`.
+
+### RENDIMIENTO POR FORMATO (solo mensual)
+
+Responde *"qué contenido funcionó"* sin caer en opinión de creativo. Corte por **formato**, no por
+pieza: video vertical · video 1:1 · carrusel · estática · flyer por consultora · email · WhatsApp.
+
+Tabla: Formato · Piezas activas · Leads · Δ vs mes anterior · CPL · Fuente.
+
+Tres reglas propias, además de las generales:
+
+1. **Se hereda el piso de volumen.** Ningún CPL por formato con menos de 30 leads. Un formato bajo
+   el piso aparece en la tabla con `n/d (bajo piso)` — no se omite, porque su ausencia también
+   es información.
+2. **Formato ≠ ángulo ≠ creativo.** Este corte dice qué **envase** rindió. Por qué rindió es
+   hipótesis, y va con la plantilla de hipótesis como cualquier otra causa. Prohibido escribir
+   *"el video funciona mejor"* como conclusión cerrada sobre 1 mes.
+3. **Meta Special Ad Category cambia la lectura.** Desde el 14-ene-2025 no hay segmentación por
+   edad, género ni código postal en productos financieros: el hook sustituye al targeting. Una
+   diferencia entre formatos puede ser diferencia de hook, no de envase. Si no se puede separar,
+   se dice.
+
+### INSUMO PARA LA PARRILLA (solo mensual)
+
+Devuelve el aprendizaje del mes a la planificación del siguiente; lo consume `viventa-parrilla-base`.
+
+Máximo 5 líneas. Cada una con esta forma exacta:
+
+> **{segmento o formato}** — {qué hizo} · Evidencia: [fuente, corte, periodo] · **Para la parrilla:**
+> {subir / sostener / bajar / probar} — {qué cambio concreto}
+
+Reglas, todas bloqueantes:
+
+1. **Solo entra lo que ya pasó las 6 condiciones de negativa.** Una línea que no sobrevivió el
+   filtro de la Fase 2 no puede reaparecer acá con otro nombre. Esta sección no es una segunda
+   oportunidad para métricas que no calificaron.
+2. **"Sin señal suficiente" es una salida válida y frecuente.** Si el mes no produjo nada que
+   cambie la parrilla, la sección dice literalmente *"Sin señal suficiente para modificar la
+   parrilla de {mes entrante}. Se sostiene la vigente."* **Inventar una señal para llenar este
+   bloque es la misma falla que inventar el tercer hallazgo, y cuesta más caro: acá se propaga
+   a la planificación.**
+3. **No propone piezas ni copies.** Dice qué mover; el qué escribir es de `viventa-parrilla-base`.
+4. **No reemplaza las recomendaciones.** Aquellas son acciones del periodo entrante con dueño;
+   esto es insumo de planificación. Pueden coincidir, y si coinciden se dice.
+5. **Se etiqueta el alcance.** Una señal de un solo canal se marca como tal — no se generaliza a
+   la base entera.
+
+Al entregar se dice: *"Reporte {semanal|mensual} de {periodo} listo para revisión: {n} hallazgos, {n} alertas, {n} métricas no emitidas."*
+
+## Skills relacionados
+
+- **Antes:** `viventa-forecast-pauta` (el corte del gasto a mitad de mes).
+- **Después:** `viventa-parrilla-base` consume la sección INSUMO PARA LA PARRILLA del mensual.
+- **Relacionado:** `funnel-diagnostics` si una fuga del embudo necesita diagnóstico propio;
+  `jtbd-dashboard-builder` si la gerencia quiere este reporte como tablero.
+- **En vez de este:** `viventa-monitor-evento` para un evento; `viventa-radar-competencia` para el
+  mercado.
+- **Referencias** (cargar solo la que toque): `references/reglas-datos.md` (cifras canónicas,
+  comparabilidad, fuente que manda, anti-patterns) · `references/plantillas.md` (plantilla semanal y
+  mensual + ejemplo recortado).

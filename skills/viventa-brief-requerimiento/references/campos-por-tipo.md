@@ -7,7 +7,7 @@ negociación de alcance después.
 
 **Lógica condicional, no formulario gigante.** Carga solo el bloque del tipo detectado.
 
-Los porcentajes son la carga real declarada por Alejandra y determinan qué tipo debe estar mejor
+Los porcentajes son la carga real declarada por la diseñadora y determinan qué tipo debe estar mejor
 afinado.
 
 ---
@@ -67,6 +67,6 @@ es la especificación que más pesa.
 - **Mecanismo de medición**: el impreso no reporta clics, así que exige **QR o URL corta con UTM
   propia**, o no es medible.
 - **Datos de contacto que van en la pieza**: validar país e indicativo del teléfono. Precedente
-  real — Carolina Ronderos apareció en el evento de España con teléfono **+1 de USA**. También:
+  real — una consultora apareció en el evento de España con teléfono **+1 de USA**. También:
   el flyer de Tampa decía *"Reserva desde 280 USA"* cuando debía decir **USD**.
 - **Irreversibilidad**: aprobado el arte final, **no hay ronda 2**. Se declara en el brief.

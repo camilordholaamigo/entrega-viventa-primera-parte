@@ -9,10 +9,10 @@ Stories e Instagram Reels en un solo 9:16, usando la medida más restrictiva (Re
 |---|---|---|---|
 | **9:16 (`9x16`)** | 1080 × 1920 | Superior **14%** (~269 px) · inferior **35%** (~670 px) · laterales **6%** (~65 px) | **El bloque de dirección NO puede ir abajo.** La convención de flyer lo pone abajo; en vertical la UI de Meta tapa 670 px. Colocar dirección + CTA a altura **45-60%** |
 | **1:1 (`1x1`)** | 1080 × 1080 | Sin obstrucción de UI en feed; mantener 6% de margen | Es el formato de feed y el de WhatsApp |
-| **4:5** | 1080 × 1350 | — | ⚠ **Hallazgo accionable:** Meta ya recomienda **4:5 para imagen y 9:16 para video**, alejándose del 1:1 como default. Viventa produce todo en 1:1. **Es decisión de Daniel, no del skill** — pero la matriz debe poder emitir 4:5 cuando se lo pidan |
+| **4:5** | 1080 × 1350 | — | ⚠ **Hallazgo accionable:** Meta ya recomienda **4:5 para imagen y 9:16 para video**, alejándose del 1:1 como default. Viventa produce todo en 1:1. **Es decisión del aprobador de marca, no del skill** — pero la matriz debe poder emitir 4:5 cuando se lo pidan |
 
 Meta Ads Manager incluye un **"Safe Zone Guardrail"** que superpone las zonas durante el setup
-del anuncio. Va en el checklist de Johana antes de exportar.
+del anuncio. Va en el checklist de la productora de video antes de exportar.
 
 ---
 
@@ -44,7 +44,7 @@ Cada celda de copy Meta de la matriz lleva su conteo de caracteres.
 | **Flyer general A3** | 297 × 420 mm, PDF, sangrado 3 mm, CMYK, 300 dpi | Uno por evento, sin consultora | Las 10 ranuras completas |
 | **Flyer consultora A3** | 297 × 420 mm | Impreso para punto físico | Igual + bloque de 4 campos de persona |
 | **Flyer consultora A4** | 210 × 297 mm | Reparto en mano / PDF por WhatsApp | Igual, jerarquía comprimida |
-| **Flyer convocatoria** | A4 | Solo Tampa y Lanzarote lo tienen — pieza distinta del flyer de asesora | `[⚠ no determinado]` — confirmar con Alejandra qué la diferencia antes de generarla |
+| **Flyer convocatoria** | A4 | Solo Tampa y Lanzarote lo tienen — pieza distinta del flyer de asesora | `[⚠ no determinado]` — confirmar con la diseñadra qué la diferencia antes de generarla |
 | **Pieza redes / WhatsApp** | 1080 × 1080 JPG | Todas las carpetas la tienen | Legible a 300 px de ancho: dirección en una sola línea, nada de párrafos |
 
 ---
@@ -85,7 +85,7 @@ que venga en el input.**
 
 Hoy conviven 5 convenciones en el mismo mes: `Cuando algo importa - LANZ - 1.1.mov`,
 `1 LANZAROTE 1.1_1.jpg`, `A3.pdf`, `PIEZAS REDESMesa de trabajo 1_3.jpg` (nombre de artboard de
-Illustrator sin renombrar) y `CAROLINA FLYRES A3 ALICANTE.pdf` (typo). También `MISSISAUGA` vs
+Illustrator sin renombrar) y `CONSULTORA FLYRES A3 ALICANTE.pdf` (typo). También `MISSISAUGA` vs
 `MISSISAGUA II`. El resultado: **no se puede cruzar un archivo con su fila del reporte de pauta.**
 El nombre de archivo es el join key entre producción y analytics.
 
@@ -97,8 +97,8 @@ TP_video_TrabajasParaEsto_1x1_v01.mov
 TP_carrusel_C1_s03_9x16_v01.jpg
 TP_estatica_Respaldo_1x1_v01.jpg
 TP_flyer_A3_v01.pdf
-TP_flyer_A4_v01_DianaBarcenas.pdf
-TP_redes_1x1_v01_DianaBarcenas.jpg
+TP_flyer_A4_v01_NombreApellido.pdf
+TP_redes_1x1_v01_NombreApellido.jpg
 ```
 
 Reglas:

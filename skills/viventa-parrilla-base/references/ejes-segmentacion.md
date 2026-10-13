@@ -43,7 +43,7 @@ Del formulario CC del CRM. Es el eje que más cambia el mensaje.
 | **Inversión / renta** | Retorno, no vivir ahí | No hablarle de "tu hogar" |
 | **Retorno al país** | Plan de regreso con fecha | No tratarlo como turista |
 
-⚠️ La lógica detallada está en `viventa-match-proyecto-lead/references/proposito-inversion.md`.
+⚠️ La lógica detallada está en `references/proposito-inversion.md`.
 **Este skill la referencia, no la duplica.** Si cambia allá, cambia acá.
 
 ---
@@ -72,7 +72,7 @@ Dos cosas distintas que se confunden seguido:
 
 **El export tiene que decir cuál de las dos es.** Si no lo dice, se pide; no se asume.
 
-⚠️ Meta 85 % de leads de USA es KPI de Johana para eventos, no de la base entera. No mezclar.
+⚠️ Meta 85 % de leads de USA es KPI de producción de eventos, no de la base entera. No mezclar.
 
 ---
 

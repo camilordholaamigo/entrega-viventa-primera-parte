@@ -51,7 +51,20 @@ bajemos, lo bajamos."
 **Consentimiento por escrito:** ⬜ Sí, fecha ____ ⬜ NO → EL CASO NO SE PUBLICA
 ```
 
-**Anexo obligatorio: tabla de repreguntas** (ver `SKILL.md` §2.3) — va impresa en la misma hoja.
+**Anexo obligatorio: tabla de repreguntas** — va impresa en la misma hoja, al lado de las preguntas.
+
+| Si el cliente responde… | Repregunta |
+|---|---|
+| *"Muy buena la experiencia, todos muy amables"* | "Me imagino que sí. Pero **antes** de que fuera buena — ¿cómo estabas vos? ¿Qué pensabas?" |
+| *"Ellos son muy profesionales"* | "¿Qué hicieron que te hizo pensar eso? ¿Te acordás de algo puntual?" |
+| *"Estaba un poco nervioso"* | "¿Nervioso de qué exactamente? ¿Qué te imaginabas que podía salir mal?" |
+| *"Uno siempre desconfía"* | "¿Te pasó algo antes, o le pasó a alguien que conocés?" |
+| *"Me ayudaron mucho"* | "Contame un momento concreto donde sentiste eso. ¿Qué día, qué pasó?" |
+| *"Estoy contento"* | "¿Contento cómo? ¿Qué es distinto hoy en tu vida que no era antes?" |
+| *"Fue rápido"* | "¿Rápido comparado con qué esperabas vos?" |
+| Silencio / duda | **No rellenar. Contá hasta cinco.** |
+
+Laddering: máximo 2 "¿por qué?" seguidos; alterná con "contame más de eso", "¿y qué pasó después?".
 
 ---
 
@@ -99,7 +112,7 @@ Citas verificadas: __ de __ · huecos críticos: __
 | Cifras económicas incluidas | ninguna |
 | Nombre autorizado a publicar | |
 | Foto autorizada | ⬜ |
-| Aprobación de marca (Daniel Vélez) | pendiente |
+| Aprobación del responsable de marca | pendiente |
 | Riesgo de deseabilidad social | |
 ```
 
@@ -176,7 +189,7 @@ Sin esto el activo se pierde otra vez. Una fila por caso.
 ```markdown
 | Archivo | Nombre | Origen | Destino | Año | Miedos | Recompra | Estado |
 |---|---|---|---|---|---|---|---|
-| CASO_sandra_nueva-york_2024.md | Sandra L. | NY, USA | Medellín | 2024 | estafa, inmueble | no | 🔴 |
+| CASO_{nombre}_{ciudad-origen}_{año}.md | {Nombre de pila} {inicial}. | {ciudad, país} | {ciudad del inmueble} | {año} | estafa, inmueble | no | 🔴 |
 ```
 
 **Meta de sistema:** 6 casos que cubran los 3 miedos × 3 geografías (USA / España / otra) +

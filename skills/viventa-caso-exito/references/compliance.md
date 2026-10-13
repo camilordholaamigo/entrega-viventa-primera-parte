@@ -1,6 +1,6 @@
 # Compliance — detalle
 
-Lo bloqueante está en `SKILL.md` Fase 5. Acá el sustento y las plantillas.
+Lo bloqueante está en `SKILL.md` Paso 7. Acá el sustento y las plantillas.
 
 ## 1. Por qué esto no es paranoia
 
@@ -60,8 +60,8 @@ después es práctica de campo, no dato medido.]`
 | **Campaña, dato macro** (ej. efecto de la bajada del dólar) | ✅ legítimo | Fuente citada y **fechada**, dato agregado, sin promesa de resultado individual |
 | **Dentro de un testimonio individual** | ⛔ prohibido | Un cliente diciendo cuánto ganó es una promesa implícita de resultado replicable |
 
-Lizeth confirmó que tiene datos de rentabilidad y Mateo señaló el ángulo *"sobre todo con la bajada
-del dólar"*. Ese ángulo se trabaja **a nivel campaña**, no dentro de un caso. El skill separa los
+El equipo tiene datos de rentabilidad y el ángulo de la bajada del dólar es legítimo, pero se
+trabaja **a nivel campaña**, no dentro de un caso. El skill separa los
 dos carriles y no deja que la rentabilidad entre por la puerta del testimonio.
 
 **Si el cliente da una cifra:**

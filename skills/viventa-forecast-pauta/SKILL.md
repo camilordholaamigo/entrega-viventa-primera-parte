@@ -1,84 +1,72 @@
 ---
 name: viventa-forecast-pauta
 description: >-
-  Convierte los exports pegados de Meta Ads y Zoho Expense en una ficha de 1 página que dice
-  cuánto va a cerrar el mes en pauta, cuántos días útiles quedan para corregirlo y qué tres
-  cosas se pueden mover — separando las 4 capas de gasto y cerrando los 20-25 días de latencia
-  entre que la plata se gasta y que Lizeth se entera. Alerta y recomienda; no aprueba nada.
+  Convierte los exports pegados de Meta Ads, Zoho Expense y tarjetas corporativas en el forecast del
+  mes: cuánto va a cerrar la pauta y todo el presupuesto de mercadeo por campaña y rubro, con 4 capas
+  de gasto, días útiles para corregir, alertas tempranas y la conciliación cuando llega la
+  contabilidad. Alerta y recomienda; no aprueba nada. USA cuando: "¿cómo vamos de presupuesto?",
+  "¿nos vamos a pasar este mes?", "proyecta el gasto de la campaña", "llegó la contabilidad, concilia
+  el mes". Es el mes en curso: viventa-reporte-campanas consolida resultados.
 metadata:
-  version: "1.0.0"
+  version: "1.2.0"
   domain: "finance"
   client: "viventa"
   blueprint: "marketing"
-  complexity: "complex"
+  complexity: "standalone"
 ---
 
 # viventa-forecast-pauta
 
-Produce **la ficha de forecast de pauta de 1 página** con la que Lizeth puede, en 90 segundos,
-salir con una decisión que **todavía cabe dentro del mes**.
+Produce **la ficha de forecast de pauta de 1 página** con la que la gerente de Growth sale, en 90
+segundos, con una decisión que **todavía cabe dentro del mes**.
 
-El dolor que resuelve es de **devengo, no de reporting**: hoy el gasto se reconoce cuando llega
-la factura, así que al 15 de junio ella tiene información hasta mayo. Este skill **no espera
-facturas**. El spend-to-date del Ads Manager es dato duro aunque contabilidad no lo haya visto.
+El dolor es de **devengo, no de reporting**: el gasto se reconoce cuando llega la factura, así que al
+15 de junio se tiene información hasta mayo (20-25 días de latencia). Este skill **no espera
+facturas**: el spend-to-date del Ads Manager es dato duro aunque contabilidad no lo haya visto.
 
-**Este skill alerta y recomienda. No aprueba, no pausa, no recorta, no reasigna** (Regla durable
-#5 del cliente). Todas las opciones salen rotuladas *"requieren aprobación de dirección
-financiera"*.
+Invariantes: **alerta y recomienda; no aprueba, no pausa, no recorta, no reasigna** (regla durable
+del cliente); toda opción sale rotulada *"requiere aprobación de dirección financiera"*. **Una sola
+pasada**: sin research web, sin llamadas externas, sin ronda de repreguntas (las cuentas de IA son
+compartidas y se quedan sin créditos hasta 4 horas). Lo que falte se declara dentro del output.
 
-**Una sola pasada.** Sin research web, sin llamadas externas, sin loops, sin ronda de
-repreguntas — las cuentas de IA son compartidas y con límite de créditos (4 horas de espera).
-Lo que falte se declara dentro del mismo output.
+## Cuándo usar
 
----
+- Explícito: "¿cómo vamos de presupuesto de pauta este mes?", "haceme el forecast de pauta de
+  {mes}", "siento que esta campaña nos va a salir muy costosa", "¿nos vamos a pasar del presupuesto
+  en Meta?", "estamos a 15 y no sé cuánto llevamos gastado de verdad", "¿todavía alcanzo a corregir
+  esto o ya se me fue el mes?", "corte de pauta al día {n}", "¿el gasto que llevamos nos va a dar
+  los leads que necesitamos?".
+- Cadencia sugerida: día 10 (solo gasto y pacing) · **día 15 (corte principal, ficha completa)** ·
+  día 22-23 (último corte con margen) · día 1-2 del mes siguiente (cierre: devengado real contra lo
+  proyectado el 15, para calibrar el método).
 
-## Reglas duras (si una se rompe, la ficha no sale)
+## Cuándo NO usar
 
-1. **Ningún número desnudo.** Cada cifra lleva `[dato]` · `[proyección]` · `[input]` · `[n/d]`.
-2. **Las 4 capas de gasto nunca se mezclan** en una sola cifra sin desglose visible. Ese es el
-   pecado capital.
-3. **Presupuesto aprobado y CPL objetivo son INPUT obligatorio, jamás inferencia.** No se
-   derivan de las cifras canónicas (ver §Inputs, caso B).
-4. **Toda proyección lleva su supuesto de ritmo escrito inmediatamente debajo.** Sin esa línea,
-   la proyección no se emite.
-5. **Sin decimales falsos.** Proyecciones redondeadas a la centena, datos al dólar, porcentajes
-   sin decimal. `$21,973.42` proyectado es una mentira de formato.
-6. **Prohibido calcular CAC del mes.** El skill se detiene en CPL. Con 1-2 cierres mensuales
-   cualquier CAC es ruido estadístico.
-7. **Proyección nunca lineal pura:** los eventos son bloques discretos fechados, fuera del
-   run-rate.
-8. **Si días útiles ≤ 0, el output cambia de género:** deja de ser alerta y pasa a nota para el
-   mes entrante. Una alerta sin margen de acción es un post-mortem que genera ansiedad.
-9. **Cero verbos de decisión.** Nunca "pausé", "recorté", "aprobado", "reasigné". Nunca
-   "optimizar el presupuesto" ni "revisar la estrategia".
-10. **Máximo 3 opciones**, cada una con monto liberado, línea específica y riesgo. Si no tiene
-    monto, no es opción y no entra.
-11. **Sección "Qué no sé" obligatoria**, con la ventana de cada export.
-12. **Los `[⚠ no verificado]` sobreviven** como advertencias en el output, no se limpian.
-13. Español de Colombia, tuteo. Salida en markdown/texto pegable en Google Sheets o Slides.
-
----
+- El consolidado de resultados del área (leads, CPL, conversión) de una semana o mes → 
+  `viventa-reporte-campanas`.
+- Cómo va un evento puntual y si se repite → `viventa-monitor-evento`.
 
 ## Input del usuario
 
-Los exports vienen **pegados como CSV o tabla**. **No hay integración por API con Meta ni con
-Zoho — hoy no existe.** Si el usuario no pega nada, se le piden los bloques, no se inventa.
+Los exports vienen **pegados como CSV o tabla**. No hay integración por API con Meta ni con Zoho.
 
-| # | Input | Obligatorio | Si falta |
-|---|---|---|---|
-| A | **Export Meta Ads** (1 al día de corte): por ad set — nombre, gasto, leads, presupuesto diario, estado | Sí | Sin esto no hay ficha. Se piden las columnas mínimas y se detiene. |
-| B | **Presupuesto aprobado del mes por canal** | Sí | Se emite la ficha **solo con capas de gasto y pacing sin meta**, y se declara arriba: *"sin presupuesto aprobado cargado no hay desviación calculable"*. **Nunca se infiere.** |
-| C | **CPL objetivo del mes** (el que fijó la agencia) | Sí para el cruce | Sin él **no se emite el cruce gasto↔leads ni la alerta "va a salir cara"**. Se reporta CPL real `[dato]` y se declara que no hay contra qué compararlo. |
-| D | **Export Zoho Expense** con su fecha de corte | Deseable | Capa 3 = `[n/d]`, y va a "Qué no sé" como sub-estimación probable. |
-| E | **Eventos del mes**: nombre, fecha, pauta briefeada | Deseable | Se declara *"no se cargaron eventos; si hay alguno, esta proyección lo sub-estima"*. |
-| F | **Export Google Ads** u otros canales | Opcional | Fila del canal en `[n/d]`, no se omite la fila. |
-| G | **Latencia de la agencia** (round-trip brief→implementación) | Opcional | Se usa el default **4-5 días** (2 hábiles de round-trip + 2-3 de re-estabilización algorítmica) marcado `[⚠ no verificado — calibrar con Lizeth]`. |
+| Campo | De dónde sale | Si falta, preguntar |
+|---|---|---|
+| A · Export Meta Ads del 1 al día de corte, por ad set: nombre, gasto, leads, presupuesto diario, estado | Ads Manager, pegado | *"Pegame el export de Meta del 1 al {día}, por ad set, con gasto, leads, presupuesto diario y estado."* **Bloquea**: sin esto no hay ficha |
+| B · Presupuesto aprobado del mes por canal | Dirección financiera / el usuario | *"¿Cuál es el presupuesto aprobado de pauta por canal para {mes}?"* Si no lo tiene: ficha solo con capas y pacing sin meta, y arriba *"sin presupuesto aprobado cargado no hay desviación calculable"*. **Nunca se infiere** |
+| C · CPL objetivo del mes (el que fijó la agencia) | La agencia de pauta | *"¿Qué CPL objetivo fijó la agencia para {mes}?"* Si no lo tiene: no se emite el cruce gasto↔leads ni la alerta "va a salir cara"; se reporta CPL real `[dato]` sin contra qué comparar |
+| D · Export Zoho Expense con su fecha de corte | Zoho Expense | *"¿Tenés el export de Expense? ¿A qué fecha?"* Si no: capa 3 = `[n/d]` y va a "Qué no sé" como sub-estimación probable |
+| E · Eventos del mes: nombre, fecha, pauta briefeada | Brief de eventos | *"¿Hay eventos este mes con pauta briefeada? Nombre, fecha y monto."* Si no: *"no se cargaron eventos; si hay alguno, esta proyección lo sub-estima"* |
+| F · Export Google Ads u otros canales | Plataforma | No se pregunta: la fila del canal va en `[n/d]`, no se omite |
+| G · Latencia de la agencia (round-trip brief→implementación) | El usuario | No se pregunta: default **4-5 días** (2 hábiles de round-trip + 2-3 de re-estabilización algorítmica) `[⚠ no verificado — calibrar con la gerente de Growth]` |
+| Mes y día de corte | El usuario o la fecha del export | *"¿A qué día cortamos?"* — default: último día del export A, declarado |
+| H · Presupuesto de mercadeo por rubro y campaña (modo C) | Gerencia de Growth / dirección financiera | *"¿Cuál es el presupuesto aprobado del mes por rubro (pauta, agencias, eventos, producción, merchandising, herramientas) y por campaña?"* Sin él, el modo C muestra gasto y proyección sin desviación |
+| I · Cargos de tarjetas corporativas (modo C) | Extracto o export: fecha, comercio, monto, centro de costo o campaña, legalizado sí/no — **sin número de tarjeta** | *"¿Me pasas los cargos de las tarjetas corporativas de mercadeo del mes, con si ya están legalizados?"* Sin esto, la fila de tarjetas va `[n/d]` y a "Qué no sé" |
+| J · Cierre contable del mes (modo D) | Contabilidad | Solo en modo D: *"Pásame el cierre contable de mercadeo de {mes} por rubro."* **Bloquea** el modo D |
 
-**Por qué B y C no se infieren:** el CAC ad-spend de Meta ([cifra interna] con [cifra interna] leads/6m) implica un
-CPL de ~$2.90, incompatible con el CPL canónico de [cifra interna]. Los "leads de Meta" mezclan pagados con
-orgánicos, así que de ahí no se deriva nada. `[⚠ no verificado]`
-
----
+**Por qué B y C no se infieren:** el CAC ad-spend de Meta ([cifra interna] con [cifra interna] leads/6m) implica un CPL de
+~$2.90, incompatible con el CPL canónico de [cifra interna]. Los "leads de Meta" mezclan pagados con orgánicos,
+así que de ahí no se deriva nada. `[⚠ no verificado]`
 
 ## Workflow
 
@@ -122,7 +110,7 @@ Días útiles = días calendario restantes
 Compromisos irreversibles = pauta de eventos dentro de la ventana de 45 días + todo lo devengado.
 El **monto influenciable** es su complemento en plata. Ambos van **arriba, en el titular**.
 
-**Si días útiles ≤ 0 → salta al modo B (§Modos de salida) y termina.** No emitas alertas ni
+**Si días útiles ≤ 0, o hay desvío y quedan menos de 5 días útiles (1-4) → salta al Modo B (§Modos de salida) y termina.** No emitas alertas ni
 opciones.
 
 ### Fase 5 — Cruce gasto ↔ leads y matriz de divergencia
@@ -167,22 +155,98 @@ antes de emitir — no hay segunda pasada.
 
 ---
 
-## Modos de salida
+### Modos de salida
 
-- **Modo A — Ficha completa** (días útiles ≥ 1): la plantilla de abajo.
+- **Modo A — Ficha completa** (≥5 días útiles, o 1-4 días útiles sin desvío): la plantilla de `Output esperado`.
+- **Modo C — Presupuesto de mercadeo completo** (cuando piden "presupuesto de mercadeo", una
+  campaña o un rubro que no es pauta): las mismas 4 capas, ahora por **rubro y campaña**. Capa 2 suma
+  los cargos de tarjetas sin legalizar; capa 3, lo cargado en Expense sin aprobar; capa 4, lo aprobado
+  en Expense que todavía no se gasta, los retainers y la pauta comprometida. Entrega la tabla semanal
+  (presupuesto · comprometido · ejecutado · proyección al cierre · desviación) por campaña y por rubro,
+  y las **alertas tempranas ordenadas por riesgo**: primero lo que va a sobreejecutarse con menos días
+  útiles para corregir. Un rubro sin presupuesto cargado se muestra igual, marcado.
+- **Modo D — Conciliación con contabilidad** (cuando llega el cierre contable): compará por rubro la
+  proyección del último corte contra lo contabilizado. Cada diferencia mayor a 5 % se explica en una
+  de cuatro causas: desfase de fechas, reclasificación de rubro, gasto no visto en ninguna fuente o
+  error de proyección. Cerrá con qué ajustar del método para el mes siguiente.
 - **Modo B — Nota para el mes entrante** (días útiles ≤ 0, o desvío con <5 días útiles):
   sin alertas, sin opciones. Estructura: titular con el cierre proyectado ·
   4 capas · qué explicó la desviación · **qué cargar distinto en el presupuesto del mes
   siguiente** · qué no sé. Encabezado literal:
   *"{Mes} ya está definido en $X `[proyección]`. Lo accionable es el presupuesto de {mes+1}."*
 
-**Cadencia sugerida:** día 10 (solo gasto y pacing) · **día 15 (corte principal, ficha
-completa)** · día 22-23 (último corte con margen) · día 1-2 del mes siguiente (cierre: devengado
-real vs lo proyectado el 15, para calibrar el método).
+### Checklist de autovalidación (todo bloqueante)
+
+**Estructura**
+- [ ] Cabe en 1 página. El titular está arriba y se entiende sin leer el resto.
+- [ ] Las 4 capas son filas separadas, con subtotal de posición devengada visible.
+- [ ] Máximo 3 opciones, cada una con monto, línea específica y riesgo.
+- [ ] Existe "Qué no sé" con las ventanas de los exports.
+
+**Integridad numérica**
+- [ ] Cero números sin etiqueta `[dato]`/`[proyección]`/`[input]`/`[n/d]`.
+- [ ] Cero decimales en cifras proyectadas.
+- [ ] Toda proyección tiene su supuesto de ritmo escrito debajo.
+- [ ] Si los métodos difieren >5%, hay banda y no punto.
+- [ ] Ninguna cifra suma capas de distinta naturaleza sin desglose.
+
+**Reglas del cliente**
+- [ ] CPL y CAC nunca en la misma columna sin etiqueta.
+- [ ] Ninguna tasa de conversión usada sin nombrar cuál ([cifra interna] desembolso / [cifra interna] pago de
+      servicio). **Jamás se suman ni se promedian.**
+- [ ] Ticket SV = $480 USD (no $495).
+- [ ] **Cero verbos de decisión.** Encabezado "requieren aprobación de dirección financiera".
+- [ ] La pauta de eventos a ≤45 días está marcada NO TOCABLE y fuera del monto influenciable.
+- [ ] No se calculó CAC mensual.
+
+**Lógica del forecast**
+- [ ] Días útiles y monto influenciable están arriba, no al final.
+- [ ] Si días útiles ≤0, la salida es Modo B, sin alertas ni opciones.
+- [ ] El diagnóstico dice la palabra **eficiencia** o **entrega**.
+- [ ] Sub-ejecución dispara alerta simétrica.
+
+**Operación**
+- [ ] Una sola pasada: sin research web, sin loops, sin llamadas externas.
+- [ ] El input fueron exports pegados, nunca API.
+- [ ] Salida en markdown/texto pegable en Sheets o Slides.
 
 ---
 
-## Plantilla exacta del output
+## Reglas duras
+
+Si una se rompe, la ficha no sale.
+
+1. **Ningún número desnudo.** Cada cifra lleva `[dato]` · `[proyección]` · `[input]` · `[n/d]`.
+2. **Las 4 capas de gasto nunca se mezclan** en una sola cifra sin desglose visible. Ese es el
+   pecado capital.
+3. **Presupuesto aprobado y CPL objetivo son INPUT obligatorio, jamás inferencia.** No se
+   derivan de las cifras canónicas (ver `Input del usuario`, filas B y C).
+4. **Toda proyección lleva su supuesto de ritmo escrito inmediatamente debajo.** Sin esa línea,
+   la proyección no se emite.
+5. **Sin decimales falsos.** Proyecciones redondeadas a la centena, datos al dólar, porcentajes
+   sin decimal. `$21,973.42` proyectado es una mentira de formato.
+6. **Prohibido calcular CAC del mes.** El skill se detiene en CPL. Con 1-2 cierres mensuales
+   cualquier CAC es ruido estadístico.
+7. **Proyección nunca lineal pura:** los eventos son bloques discretos fechados, fuera del
+   run-rate.
+8. **Si días útiles ≤ 0, el output cambia de género:** deja de ser alerta y pasa a nota para el
+   mes entrante. Una alerta sin margen de acción es un post-mortem que genera ansiedad.
+9. **Cero verbos de decisión.** Nunca "pausé", "recorté", "aprobado", "reasigné". Nunca
+   "optimizar el presupuesto" ni "revisar la estrategia".
+10. **Máximo 3 opciones**, cada una con monto liberado, línea específica y riesgo. Si no tiene
+    monto, no es opción y no entra.
+11. **Sección "Qué no sé" obligatoria**, con la ventana de cada export.
+12. **Los `[⚠ no verificado]` sobreviven** como advertencias en el output, no se limpian.
+13. Español de Colombia, tuteo. Salida en markdown/texto pegable en Google Sheets o Slides.
+14. **Las cifras de presupuesto y gasto son sensibles**: la ficha es interna, no se comparte fuera
+    de Viventa ni con la agencia sin aprobación de la gerencia, y nunca lleva números de tarjeta ni
+    datos bancarios.
+
+---
+
+## Output esperado
+
+No escribe archivos salvo que se pida; en ese caso `salidas/viventa-forecast-pauta/{AAAA-MM}-corte-{dd}.md`. Devuelve en la conversación la ficha en markdown/texto pegable en Sheets o Slides. Modo A, con esta plantilla exacta (Modo B: la estructura de §Modos de salida):
 
 ```
 FORECAST DE PAUTA — {MES AÑO} · corte {dd-mmm} (día {n} de {N} · {x}% del mes)
@@ -248,7 +312,7 @@ OPCIONES SOBRE LA MESA — requieren aprobación de dirección financiera
 
 ---
 
-## Ejemplo recortado (formato, no datos reales de Viventa)
+### Ejemplo recortado (formato, no datos reales de Viventa)
 
 ```
 FORECAST DE PAUTA — AGOSTO 2026 · corte 15-ago (día 15 de 31 · 48% del mes)
@@ -263,63 +327,30 @@ FORECAST DE PAUTA — AGOSTO 2026 · corte 15-ago (día 15 de 31 · 48% del mes)
  2 Ejecutado sin facturar   [dato]   $7,050  $1,480  $    0  $ 8,530  ← el ciego
    POSICIÓN DEVENGADA al 15          $7,050  $1,480  $2,800  $11,330
  4 Comprometido remanente   [dato]   $7,520  $1,520  $1,600  $10,640
-   CIERRE PROYECTADO        [proy.] $14,570  $3,000  $4,400  $21,970
+   CIERRE PROYECTADO        [proy.] $14,600  $3,000  $4,400  $22,000
 
  CPL Meta: $65 a la fecha [dato] · $65 proyectado [proy.] · [cifra interna] meta [input]
  → Meta va a gastar 21% más para entregar 7% menos leads. Es divergencia de
    EFICIENCIA, no de entrega: el gasto está en ritmo, los leads no.
 
  A · Bajar el diario de "Retargeting ES" de $180 a $110 por 14 días. Libera
-     ~$980. Es el ad set con CPL $112, el peor de los 4. Riesgo: reentra en
+     ~$1,000. Es el ad set con CPL $112, el peor de los 4. Riesgo: reentra en
      aprendizaje ~48-72h.
  QUÉ NO SÉ: no tengo Expense posterior al 14-ago. Si hay legalizaciones de la
  semana del 11-15 sin cargar, la posición devengada real es mayor.
 ```
 
----
+Al entregar se dice: *"Ficha de pauta al {dd-mmm}: cierre proyectado {banda}, {u} días útiles. Las opciones requieren aprobación de dirección financiera."*
 
-## Referencias
+## Skills relacionados
 
-- `references/capas-y-metodos.md` — las 4 capas en detalle, modos de falla al mezclarlas, los
-  tres métodos de proyección, ajuste por eventos, qué el skill **no** modela.
-- `references/umbrales-alertas.md` — tabla de semáforo, matriz de divergencia comentada, días
-  útiles, cadencia de cortes.
-- `references/reglas-datos.md` — las 10 reglas de datos canónicas y los 14 anti-patterns con su
-  antídoto.
-
----
-
-## Checklist de autovalidación (todo bloqueante)
-
-**Estructura**
-- [ ] Cabe en 1 página. El titular está arriba y se entiende sin leer el resto.
-- [ ] Las 4 capas son filas separadas, con subtotal de posición devengada visible.
-- [ ] Máximo 3 opciones, cada una con monto, línea específica y riesgo.
-- [ ] Existe "Qué no sé" con las ventanas de los exports.
-
-**Integridad numérica**
-- [ ] Cero números sin etiqueta `[dato]`/`[proyección]`/`[input]`/`[n/d]`.
-- [ ] Cero decimales en cifras proyectadas.
-- [ ] Toda proyección tiene su supuesto de ritmo escrito debajo.
-- [ ] Si los métodos difieren >5%, hay banda y no punto.
-- [ ] Ninguna cifra suma capas de distinta naturaleza sin desglose.
-
-**Reglas del cliente**
-- [ ] CPL y CAC nunca en la misma columna sin etiqueta.
-- [ ] Ninguna tasa de conversión usada sin nombrar cuál ([cifra interna] desembolso / [cifra interna] pago de
-      servicio). **Jamás se suman ni se promedian.**
-- [ ] Ticket SV = $480 USD (no $495).
-- [ ] **Cero verbos de decisión.** Encabezado "requieren aprobación de dirección financiera".
-- [ ] La pauta de eventos a ≤45 días está marcada NO TOCABLE y fuera del monto influenciable.
-- [ ] No se calculó CAC mensual.
-
-**Lógica del forecast**
-- [ ] Días útiles y monto influenciable están arriba, no al final.
-- [ ] Si días útiles ≤0, la salida es Modo B, sin alertas ni opciones.
-- [ ] El diagnóstico dice la palabra **eficiencia** o **entrega**.
-- [ ] Sub-ejecución dispara alerta simétrica.
-
-**Operación**
-- [ ] Una sola pasada: sin research web, sin loops, sin llamadas externas.
-- [ ] El input fueron exports pegados, nunca API.
-- [ ] Salida en markdown/texto pegable en Sheets o Slides.
+- **Antes:** `viventa-brief-evento` da la fecha y la pauta briefeada de los eventos (input E);
+  `viventa-compra-merchandising` y `viventa-evento-aliado`, los compromisos de esos rubros.
+- **Relacionado:** `budget-builder` si hay que armar el presupuesto anual o del trimestre desde cero.
+- **Después:** `viventa-reporte-campanas` consolida el mes cerrado; el corte del día 1-2 de este skill
+  calibra el método contra lo devengado real.
+- **En vez de este:** `viventa-monitor-evento` para la pauta de un evento puntual.
+- **Referencias:** `references/capas-y-metodos.md` (las 4 capas, los tres métodos de proyección,
+  ajuste por eventos, qué no se modela) · `references/umbrales-alertas.md` (semáforo, matriz de
+  divergencia, días útiles, cadencia) · `references/reglas-datos.md` (reglas de datos y
+  anti-patterns con antídoto).

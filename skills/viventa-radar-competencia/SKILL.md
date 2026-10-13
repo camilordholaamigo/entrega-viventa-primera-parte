@@ -1,143 +1,125 @@
 ---
 name: viventa-radar-competencia
 description: >-
-  El radar mensual de mercado: qué publicaron y qué pautaron los competidores, cómo va Viventa
-  contra el benchmark del sector, y qué se dijo de la marca en el periodo. Cierra con qué cambió
-  desde la corrida anterior y qué implica para la parrilla del mes. Compara contra el baseline
-  real del Voice of Customer, no contra cero, y lo que no se pudo verificar va a "no observado"
-  en vez de estimarse.
+  Produce el radar mensual de mercado de Viventa en 2 páginas: qué publicaron y pautaron los
+  competidores, benchmark comparable y menciones de marca contra el baseline del Voice of
+  Customer, y qué cambió desde la corrida anterior. Lo no verificado va a "no observado". USA
+  cuando: "qué está haciendo la competencia", "radar competitivo del mes", "qué ángulos están
+  corriendo los otros brokers", "qué dicen de nosotros", "benchmark del sector". Es el mercado
+  como proceso: viventa-inteligencia-campana saca el insight de una campaña y radar-competitivo
+  corre el scraping con dashboard.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   domain: "analyze"
   client: "viventa"
   blueprint: "marketing"
-  complexity: "medium"
+  complexity: "standalone"
 ---
 
 # viventa-radar-competencia
 
 Produce **el radar de mercado del mes**: competencia, benchmark y menciones de marca, en un solo
-documento de máximo 2 páginas.
+documento de máximo 2 páginas. **Observa y reporta**: no recomienda campañas, no escribe copy y no
+decide presupuesto. Su salida la consumen `viventa-parrilla-base` y `viventa-inteligencia-campana`.
 
-**Quién lo usa:** Lizeth Henríquez y Daniel Vélez.
+**Una sola pasada.** Cuentas compartidas, créditos limitados: si el material no está en el input
+o en una búsqueda por competidor, va a "no observado". Eso es un resultado válido.
 
-**La regla que gobierna todo:** este skill **observa y reporta**. No recomienda campañas, no
-escribe copy y no decide presupuesto. Su salida alimenta a `viventa-parrilla-base` y a
-`viventa-inteligencia-campana`.
+Dos hechos que ordenan la lectura (detalle en `references/panorama-competitivo.md`):
 
-**Una sola pasada.** Cuentas compartidas, créditos limitados. **Nada de research de 6 fases** —
-si el material no está en el input o en una búsqueda acotada, va a "no observado".
+- **Meta Special Ad Category** (desde el 14-ene-2025): los anuncios financieros perdieron
+  segmentación por edad, género y código postal. **El hook sustituye al targeting**, así que este
+  radar mira hooks y ángulos, no audiencias.
+- **El ángulo "raíces" está saturado**: lo usan todos los brokers. Reportarlo no es un hallazgo.
 
----
+## Cuándo usar
 
-## Por qué este skill existe
+- Explícito: "qué está haciendo la competencia", "radar competitivo del mes", "qué ángulos están
+  corriendo los otros brokers", "qué dicen de nosotros", "benchmark del sector".
+- Implícito: antes de armar la parrilla del mes, o cuando alguien afirma que "la competencia está
+  haciendo X" y nadie tiene la pieza que lo pruebe.
+- Cadencia: mensual, sobre el mes cerrado.
 
-`viventa-inteligencia-campana` mira ángulos de competencia **como insumo de una campaña puntual**.
-Nadie mira el mercado **como proceso**, y por eso no hay forma de saber qué cambió.
+## Cuándo NO usar
 
-El Voice of Customer que usan todos los skills es un **snapshot de 90 días congelado**. Sirve como
-baseline, pero no dice qué pasó este mes.
+- **El insight de entrada de una campaña puntual** (dolores, ángulos, hooks) →
+  `viventa-inteligencia-campana`.
+- **El desempeño propio** (CRM, Meta, Google, email) → `viventa-reporte-campanas`.
+- **Scraping masivo de varias marcas con dashboard** → `radar-competitivo`.
 
-Dos hechos que cambian cómo se mira:
+## Conexiones
 
-**1. Meta Special Ad Category.** Desde el 14-ene-2025, los anuncios de productos financieros
-pierden segmentación por edad, género y código postal. **El hook sustituye al targeting.** Por eso
-este radar mira **hooks y ángulos**, no audiencias — mirar audiencias sería mirar lo que ya no
-decide nada. También puede explicar parte del CAC de Meta ([cifra interna]) mejor que el creativo.
-
-**2. El ángulo "raíces" está saturado.** Los ~8 brokers autorizados por Bancolombia lo usan todos.
-Un radar que reporte "la competencia habla de volver a casa" no está reportando nada.
-
----
-
-## Reglas duras (si una se rompe, el entregable no sale)
-
-1. **Lo no verificado va a "no observado".** Nunca se estima el gasto de un competidor, su
-   volumen de leads ni su resultado. Si no se vio, no se dice.
-2. **Toda observación lleva su evidencia:** qué pieza, dónde, cuándo. Una afirmación sobre la
-   competencia sin el ejemplo concreto no entra.
-3. **Toda fila de benchmark declara fuente, ventana y universo.** Si los tres no están, la fila
-   no se emite y va a "métricas no emitidas".
-4. **Solo se compara lo comparable.** Métrica propia contra métrica ajena medida distinto es una
-   comparación falsa aunque los números existan. Ante la duda, no se compara y se dice por qué.
-5. **El social listening compara contra el baseline real, no contra cero.** Baseline del VOC 90d:
-   **6 % de comentarios** (vs 0-0,3 % de competidores) · **1,7 % de negativos** (vs 10-15 % del
-   sector) · **41 testimoniales largos espontáneos** · **5 recompradores**.
-6. **Cero PII.** Las menciones se reportan por volumen y sentimiento. Un verbatim público se cita
-   textual y sin identificar a la persona más allá de su handle público.
-7. **Cero cifras fuera de `references/cifras-canonicas.md`** para lo propio. CPL ≠ CAC. El +42 %
-   es participación del segmento de no residentes, **no crecimiento del mercado** (el mercado
-   total crece 5-12 %).
-8. **No escribe copy ni propone campañas.** Eso es `inteligencia-campana` y `parrilla-base`.
-9. **Español de Colombia, tuteo.**
-10. Máximo **2 páginas**.
-
----
+| Conexión | Para qué | Si falta |
+|---|---|---|
+| Búsqueda web (incluye Meta Ad Library pública) | Ver publicaciones, anuncios activos y menciones de marca que el usuario no trajo | Degrada: se trabaja solo con lo pegado; lo no traído va a "no observado" y la cobertura lo declara |
 
 ## Input del usuario
 
-| Input | Obligatorio | Si falta |
+| Campo | De dónde sale | Si falta, preguntar |
 |---|---|---|
-| Periodo a cubrir | **Sí** | Asumir el mes cerrado anterior y decirlo |
-| Lista de competidores a mirar | No | Usar los brokers autorizados por Bancolombia y declararlo |
-| Piezas o anuncios recolectados (capturas, links, texto) | No | Búsqueda acotada. Lo no hallado → "no observado" |
-| Métricas propias del periodo (de `viventa-reporte-campanas`) | No | El bloque de benchmark sale incompleto y se dice |
-| Menciones de marca recolectadas | No | Búsqueda acotada, mismo criterio |
-| Radar del mes anterior | No | **El bloque "qué cambió" no se emite.** No se inventa una comparación |
+| Periodo | El usuario | *"¿Qué mes cubro?"* — sin respuesta, el mes cerrado anterior, declarado en la cobertura |
+| Competidores a mirar | El usuario, o la lista del radar anterior | *"¿Qué competidores miro este mes?"* — sin respuesta, los brokers autorizados por Bancolombia (`references/panorama-competitivo.md`), declarado en la cobertura. Si no se puede confirmar quiénes son, se dice; no se inventan nombres |
+| Piezas o anuncios recolectados | El usuario pega capturas, links o texto | No se pregunta: se hace la búsqueda del Paso 2 |
+| Métricas propias del periodo | La salida de `viventa-reporte-campanas` | *"¿Tenés el reporte de campañas del mes?"* — sin él, el benchmark sale incompleto y lo dice |
+| Métricas de referencia del sector | El usuario, con su fuente publicada | *"¿Tenés algún benchmark del sector con fuente?"* — sin fuente, la fila va a "métricas no emitidas" |
+| Menciones de marca recolectadas | El usuario | No se pregunta: se hace la búsqueda del Paso 4 |
+| Radar del mes anterior | `salidas/viventa-radar-competencia/` | Se busca ahí; si no está, el Paso 5 lo trata como primera corrida |
 
----
+Baseline de social listening y cifras propias: `references/voice-of-customer-90d.md` y
+`references/cifras-canonicas.md` (los inyecta el build del plugin del cliente). No se preguntan.
 
 ## Workflow
 
-### Fase 1 — Encuadre
+1. **Encuadrá.** Fijá periodo, competidores y fuentes que de verdad se pudieron mirar. Escribí la
+   línea de cobertura con lo que **no** se cubrió: evita que el lector asuma cobertura total.
+2. **Mirá la competencia.** Por competidor, una pasada: lo pegado y, si hay búsqueda web, sus
+   publicaciones del periodo y sus anuncios activos en Meta Ad Library. Anotá solo lo observado:
+   formato y tema publicado, ángulo o hook con **la pieza como evidencia** (qué, dónde, cuándo), y
+   si pauta, qué anuncio se vio. Es señal: un ángulo nuevo en dos o más competidores a la vez, un
+   formato nuevo, un sub-segmento que alguien empezó a atender, un competidor que dejó de pautar.
+   Clasificá cada ángulo por el miedo que ataca (estafa, perder la plata, inmueble que no es).
+3. **Armá el benchmark.** Una fila por métrica que tenga **fuente, ventana y universo**, y que
+   esté medida igual del lado propio y del ajeno. Si falta cualquiera de las tres o la medición
+   difiere, la fila va a "Métricas no emitidas y por qué". CPL y CAC se nombran completos y
+   nunca se mezclan.
+4. **Medí las menciones.** Volumen del periodo, separando **espontáneas** de **respondidas**, y
+   saldo de sentimiento. Compará **siempre contra dos referencias a la vez**: el baseline propio
+   del VOC (6 % de comentarios, 1,7 % de negativos) y el sector (0-0,3 % de comentarios en
+   competidores, 10-15 % de negativos). Ej.: 3 % de negativos = "casi el doble del baseline
+   propio, muy por debajo del sector". Igual al baseline → "en línea con el baseline". Sin
+   menciones halladas → "no observado", no "cero menciones". Marcá si un competidor está
+   atendiendo un sub-segmento desatendido (veteranos con VA loan, Puerto Rico, vivienda usada,
+   compra sin cuota inicial): es el hallazgo más valioso del mes.
+5. **Anotá qué cambió.** Solo si hay radar anterior: hasta 3 cambios contra él, cada uno con su
+   implicación para la parrilla en una línea. Sin cambios relevantes → "sin cambios relevantes".
+   Sin radar anterior → *"primera corrida — no hay comparación posible"*, y este radar queda de
+   baseline.
+6. **Autovalidá y guardá.** Recorré las reglas duras contra el borrador; si alguna falla,
+   corregí antes de emitir. Guardá en la ruta de `Output esperado`.
 
-Fijá periodo, competidores y qué fuentes se pudieron mirar de verdad. **Escribí desde el arranque
-qué no se pudo cubrir** — es lo que evita que el lector asuma cobertura total.
+## Reglas duras
 
-### Fase 2 — Competencia: contenidos y pauta
+- **Nunca estima** gasto, volumen de leads ni resultados de un competidor, ni desde la Ad
+  Library ni desde la frecuencia de posteo. Si no se vio, no se dice.
+- **Ninguna observación de competencia sin su evidencia** (pieza, dónde, cuándo). Una sola pieza
+  no se lee como estrategia.
+- **Ninguna fila de benchmark sin fuente, ventana y universo**, y ninguna comparación entre
+  métricas medidas distinto.
+- **Nunca compara menciones contra cero**: siempre contra el baseline del VOC y el sector.
+- **Cero PII**: menciones por volumen y sentimiento; un verbatim público se cita sin identificar
+  a la persona más allá de su handle público.
+- **Ninguna cifra propia fuera de `references/cifras-canonicas.md`.** El +42 % es participación
+  del segmento de no residentes, nunca "crecimiento del mercado" (el mercado total crece 5-12 %).
+- **Nunca escribe copy ni propone campañas.** Permitido: *"el ángulo de entrega garantizada ya lo
+  corren 3 competidores; la parrilla debería evaluar si sigue diferenciando"*. Prohibido:
+  *"lanzar una campaña para veteranos con este copy: …"*.
+- **Nunca reporta "raíces" ni audiencias como hallazgo.**
+- **La sección "No observado" siempre existe**, aunque diga "nada relevante".
 
-Por competidor, solo lo observado:
-- Qué publicó en el periodo (formato y tema)
-- Qué ángulo o hook está corriendo, **con la pieza como evidencia**
-- Si está pautando y qué anuncio se vio (Meta Ad Library si está disponible)
+## Output esperado
 
-**Prohibido:** estimar presupuesto, inferir resultados, deducir estrategia de una sola pieza.
-
-**Qué sí es señal:** un ángulo que aparece en varios competidores a la vez, un formato nuevo, un
-sub-segmento que alguien empezó a atender.
-
-### Fase 3 — Benchmark
-
-Tabla contra métricas propias, **solo filas comparables**. Fuente, ventana y universo en cada una.
-
-Lo que no cumpla las tres cosas va a **"Métricas no emitidas y por qué"**, igual que en
-`viventa-reporte-campanas`.
-
-### Fase 4 — Social listening
-
-Volumen de menciones, separando **espontáneas** de **respondidas**, con saldo de sentimiento.
-
-Contra el baseline de la regla 5. **Un 3 % de negativos no es "malo": es casi el doble del
-baseline propio y aún así muy por debajo del sector.** Sin baseline, cualquier número se lee mal.
-
-Recogé también los **sub-segmentos desatendidos** que aparezcan — el VOC ya identificó veteranos
-con VA loan, Puerto Rico, vivienda usada y compra sin cuota inicial. Si alguien de la competencia
-los está atendiendo, eso es el hallazgo del mes.
-
-### Fase 5 — Qué cambió
-
-**Solo si hay radar anterior.** Si no lo hay, la sección dice *"primera corrida — no hay
-comparación posible"* y se establece este radar como baseline.
-
-Máximo 3 cambios, cada uno con su implicación para la parrilla en una línea.
-
-### Fase 6 — Autovalidación
-
-Corré el checklist antes de emitir.
-
----
-
-## Formato del entregable
+Archivo `salidas/viventa-radar-competencia/radar-{AAAA-MM}.md`, español de
+Colombia con tuteo, máximo 2 páginas:
 
 ```
 # Radar de mercado — {periodo}
@@ -145,70 +127,30 @@ Corré el checklist antes de emitir.
 Cobertura: {qué se miró} · No cubierto: {qué no}
 
 ## 1. Competencia
-{por competidor: qué publicó, qué ángulo, evidencia}
+{por competidor: qué publicó, qué ángulo, miedo que ataca, evidencia}
 
 ## 2. Benchmark
-{tabla comparable, con fuente/ventana/universo}
+{tabla comparable, con fuente / ventana / universo}
 ### Métricas no emitidas y por qué
 
 ## 3. Menciones de marca
-{volumen, espontáneas vs respondidas, sentimiento vs baseline}
+{volumen, espontáneas vs respondidas, sentimiento vs baseline y vs sector}
 
 ## 4. Qué cambió desde la corrida anterior
-{máx. 3, con implicación para la parrilla}
+{máx. 3, con implicación para la parrilla — o "primera corrida"}
 
 ## 5. No observado
 {lo que no se pudo verificar}
 ```
 
----
+Al terminar se le dice al usuario la ruta, la cobertura en una línea y el hallazgo principal (o
+"sin hallazgos nuevos este mes").
 
-## Fronteras
+## Skills relacionados
 
-| Este skill | El otro |
-|---|---|
-| Observa el mercado, mensual | `viventa-inteligencia-campana` produce el insight de **una campaña** |
-| No propone envíos | `viventa-parrilla-base` los planifica, consumiendo esta salida |
-| Mira afuera | `viventa-reporte-campanas` mira adentro |
-
----
-
-## Checklist de autovalidación
-
-**A · Verificabilidad**
-- [ ] Toda observación de competencia trae su evidencia concreta
-- [ ] Cero estimaciones de presupuesto, leads o resultados ajenos
-- [ ] Existe la sección **"No observado"**, aunque diga "nada relevante"
-- [ ] La cobertura real está declarada arriba
-
-**B · Benchmark**
-- [ ] Toda fila declara fuente, ventana y universo
-- [ ] Las filas que no cumplen están en "métricas no emitidas", no omitidas
-- [ ] No comparé métricas medidas distinto
-- [ ] CPL y CAC nombrados completos, nunca mezclados
-
-**C · Social listening**
-- [ ] El sentimiento se comparó contra el baseline del VOC, no contra cero
-- [ ] Espontáneas y respondidas están separadas
-- [ ] Cero PII más allá de handles públicos
-
-**D · Lectura**
-- [ ] Si no hay radar anterior, "qué cambió" dice que es la primera corrida
-- [ ] No reporté "la competencia habla de raíces" como hallazgo — está saturado y ya se sabe
-- [ ] Miré hooks y ángulos, no audiencias (Special Ad Category)
-- [ ] Máximo 3 cambios, cada uno con implicación
-
-**E · Alcance**
-- [ ] No escribí copy ni propuse campañas
-- [ ] Cabe en 2 páginas
-- [ ] El +42 % está descrito como participación del segmento, no como crecimiento del mercado
-
----
-
-## Referencias
-
-- `references/panorama-competitivo.md` — los brokers autorizados, el mapa de ángulos saturados,
-  Special Ad Category y los sub-segmentos desatendidos
-- `references/cifras-canonicas.md` — fuente de verdad de todo número propio
-- `references/contexto-viventa.md` — contexto del cliente
-- `references/voice-of-customer-90d.md` — el baseline de social listening
+- **Antes:** `viventa-reporte-campanas`, que da las métricas propias del benchmark.
+- **Después:** `viventa-parrilla-base` planifica el mes con esta salida;
+  `viventa-inteligencia-campana` la usa como insumo de una campaña.
+- **En vez de este:** `radar-competitivo` para un scraping completo de varias marcas con
+  dashboard; `viventa-caso-exito` cuando lo que hay que hacer es convertir la prueba social propia
+  en piezas.

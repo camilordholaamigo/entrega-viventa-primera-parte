@@ -10,7 +10,7 @@
   - `Incentivos Especialistas Inmobiliarios 2026.pdf` — comisión [cifra interna] del valor de venta.
   - `Incentivos Especialistas Credito_.docx` — 4%-30% según rango de unidades.
   - `Incentivos uso del BOT de entrenamiento comercial .docx` — Vivepuntos del VST.
-- Entrevistas Lizeth Henríquez, olas 1 (may-2026) y 2 (ago-2026).
+- Entrevistas con el equipo de Growth & Marketing, olas 1 (may-2026) y 2 (ago-2026).
 - KGD de origen: el documento de diseño de la skill (interno).
 
 ## Externas
@@ -32,7 +32,7 @@
 
 Hallazgo clave: el modo de falla no suele ser el retraso en sí, sino el **retraso no reconocido**.
 Y el tracking manual pierde un estimado de 20-30% de los referidos calificados por silos de datos —
-exactamente la deuda técnica que Lizeth describe en Zoho.
+exactamente la deuda técnica que el equipo describe en Zoho.
 
 ### Compliance — disclosure de relación material
 - [16 CFR §255.5 — Disclosure of material connections (Cornell LII)](https://www.law.cornell.edu/cfr/text/16/255.5)

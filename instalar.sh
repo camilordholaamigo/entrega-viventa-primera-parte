@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Instala en Claude Code las skills de Viventa.
-# Uso:  ./instalar.sh                 → las 18
+# Uso:  ./instalar.sh                 → las 28
 #       ./instalar.sh lizeth-henriquez → solo las de esa persona (ver personas/)
 set -euo pipefail
 raiz="$(cd "$(dirname "$0")" && pwd)"

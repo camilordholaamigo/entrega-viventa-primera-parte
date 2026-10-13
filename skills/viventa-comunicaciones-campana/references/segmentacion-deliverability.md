@@ -1,6 +1,6 @@
 # Segmentación y deliverability — tablas de referencia
 
-> El dominio de Viventa **ya cae en spam** (Juan Camilo: *"la cantidad de mensajes que envío están
+> El dominio de Viventa **ya cae en spam** (el responsable de email marketing: *"la cantidad de mensajes que envío están
 > llegando a spam"*). El problema no son los 250K registros: **es enviarles a los 250K.**
 > Estas tablas no son buenas prácticas: deciden a cuánta gente se le escribe y qué se le escribe.
 
@@ -39,7 +39,7 @@ Quien se registra sale de la convocatoria en ese instante y pasa al carril de re
 
 **Impacto esperado:** una convocatoria bien segmentada para una ciudad sale a
 **2.000-6.000 contactos, no a 250.000** `[⚠ no verificado — estimación de orden de magnitud sobre
-los 250K; Juan Camilo debe confirmarla contra Zoho]`. Menos volumen, más apertura, mejor
+los 250K; el responsable de email marketing debe confirmarla contra Zoho]`. Menos volumen, más apertura, mejor
 reputación y **más asistentes**, no menos.
 
 ---
@@ -67,7 +67,7 @@ mensaje de una persona y no a campaña.
 
 > `[⚠ no verificado]` No hay benchmark publicado que compare español neutro vs. español de Colombia
 > en tasa de apertura para audiencias hispanas en USA/España. La regla de usar colombiano se
-> sostiene en la voz de marca y el ICP, no en un dato. Si Juan Camilo quiere el dato: A/B propio.
+> sostiene en la voz de marca y el ICP, no en un dato. Si email marketing quiere el dato: A/B propio.
 
 ---
 
@@ -131,7 +131,7 @@ Este paquete requiere revisión humana antes de programar.
 |---|---|---|
 | **Trabajo** | Explicar, argumentar, probar | Empujar a **una** acción |
 | **Extensión** | 150-280 palabras | **Máx. 40 palabras** |
-| **Voz** | La marca ("el equipo de Viventa") | **Una persona con nombre** ("soy Johana de Viventa") |
+| **Voz** | La marca ("el equipo de Viventa") | **Una persona con nombre** ("soy {consultora} de Viventa") |
 | **Estructura** | Asunto + preheader + cuerpo + CTA + pie legal | Un bloque, **una** pregunta al final |
 | **Contenido propio** | Testimonios, desglose del proceso, filosofía | Dirección, hora, mapa, confirmación |
 | **Formato** | Viñetas y párrafos | Emojis funcionales (📍🕙🚇), nunca decorativos |

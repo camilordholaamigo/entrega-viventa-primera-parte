@@ -95,7 +95,7 @@ Fuentes: [Ámbito Jurídico](https://www.ambitojuridico.com/noticias/mercantil/m
 |---|---|
 | El comercial dice "esta zona valoriza mucho" y no hay fuente | 🔴 No entra. Se archiva en 🟧 y se genera la pregunta de soporte documental |
 | Hay un dato del DANE IVP de variación 2020-2025 en Santa Marta | 🟡 → 🟢 **si** la pieza cita fuente, año y ciudad, y el verbo va en **pasado** |
-| Lizeth aporta datos propios de rentabilidad de Viventa | 🟡 Solo si se documentan metodología, muestra y periodo. Si no, no entra |
+| La gerencia aporta datos propios de rentabilidad de Viventa | 🟡 Solo si se documentan metodología, muestra y periodo. Si no, no entra |
 | "Con el dólar como está, te rinde más" | 🟡 Publicable solo como **hecho de tasa hoy**. 🔴 si implica que la tasa se mantendrá o mejorará |
 | "Mi Casa en Colombia: FNA hasta 100% sin cuota inicial" | 🟢 como **programa existente**. 🔴 si se enuncia como aprobación o como algo garantizado para el lead |
 | El precio sugiere que es VIS pero la fuente no lo dice | `No informado`. **Nunca** inferido. Es el campo por el que cayó Bolívar |

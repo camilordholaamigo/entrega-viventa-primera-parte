@@ -4,7 +4,7 @@ Referencia de `viventa-brief-requerimiento`. Caso de solicitud que **sí** pasa 
 
 ## Solicitud recibida
 
-> *WhatsApp de comercial:* «Lizeth, necesitamos empujar Vive Casas en Florida este mes. La meta
+> *WhatsApp de comercial:* «Hola, necesitamos empujar Vive Casas en Florida este mes. La meta
 > del equipo son 300 leads y el CPL no puede pasar de 40 dólares. Arrancamos el 20 de agosto, va
 > por Meta. Ya tenemos el proyecto de Santa Marta y el de Barranquilla. ¿Me ayudan con creativos?»
 
@@ -20,15 +20,16 @@ Referencia de `viventa-brief-requerimiento`. Caso de solicitud que **sí** pasa 
 
 ```markdown
 # BRIEF — Campaña Meta · Vive Casas Florida
-Solicitante: Andrés Gil (Comercial USA) · Recibido: 6-ago · Necesidad: 20-ago
+Solicitante: comercial de la plaza USA · Recibido: 6-ago · Necesidad: 20-ago
 Tipo: campaña de ads · Estado: COMPLETO — se puede arrancar
 
 ## 1. Objetivo de negocio
 300 leads de Vive Casas desde Florida (USA) a un CPL ≤ USD 40, entre el 20-ago
 y el 20-sep. Es CPL (costo por lead), no CAC (costo por cierre) — no mezclar.
-Traducción a negocio: 300 leads × [cifra interna] ≈ 7 pagos de Servicio Viventa
-(ticket USD 480). [SUPUESTO: conversión canónica del área, confirmar si aplica
-a este sub-segmento]
+Traducción a negocio (dos KPI distintos, no se suman):
+  Desembolso / Vive Casas: 300 × [cifra interna] ≈ 10 cierres
+  Pago de Servicio Viventa: 300 × [cifra interna] ≈ 7 pagos ≈ USD 3.360 (ticket USD 480)
+[SUPUESTO: conversiones canónicas del área, confirmar si aplican a este sub-segmento]
 
 ## 2. Audiencia
 Colombianos en Florida (Miami-Dade, Broward, Tampa Bay), ingresos en USD,
@@ -53,21 +54,21 @@ Vive Casas Florida] Confirmar antes de producir.
 Moneda de las cifras en pieza: USD.
 
 ## 5. Aprobadores (secuencial, un dueño por paso)
-1. Contenido y oferta — Andrés Gil (solicitante) · 24 h hábiles
-2. Marca y palabras prohibidas — Daniel Vélez · 24 h hábiles
+1. Contenido y oferta — el comercial solicitante · 24 h hábiles
+2. Marca y palabras prohibidas — aprobador de marca · 24 h hábiles
 3. Claims financieros (cuota, tasa, "calificas") — área de Crédito · 48 h hábiles
-Consolidador único de observaciones: Andrés Gil. Canal único: el hilo del brief.
+Consolidador único de observaciones: el comercial solicitante. Canal único: el hilo del brief.
 Máximo 2 rondas de revisión.
 Congelamiento: aprobado el paso 2, todo cambio de texto, imagen o lineamiento
 entra como SOLICITUD NUEVA, no como observación.
 Si un aprobador no responde en su plazo: la entrega se corre 1 día hábil por
-cada día de silencio y se escala a Lizeth. El silencio NO aprueba.
-[⚠ no verificado] Plazos y orden pendientes de ratificar por Alejandra, Daniel
-y Lizeth.
+cada día de silencio y se escala a la gerente de Growth. El silencio NO aprueba.
+[⚠ no verificado] Plazos y orden pendientes de ratificar por la diseñadora, el aprobador
+de marca y la gerente de Growth.
 
 ## 6. Fechas
 Necesidad declarada: 20-ago. Ruta crítica: 3 aprobaciones (hasta 4 días
-hábiles) + producción. ⚠ La fecha de entrega la confirma Alejandra — este
+hábiles) + producción. ⚠ La fecha de entrega la confirma la diseñadora — este
 brief no la compromete.
 
 ## 7. Referencias

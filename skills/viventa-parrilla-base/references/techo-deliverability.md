@@ -6,7 +6,7 @@ Referencia de `viventa-parrilla-base`, Fase 4.
 
 ## El problema, en una línea
 
-**El dominio de Viventa ya cae en spam.** Juan Camilo, textual:
+**El dominio de Viventa ya cae en spam.** El responsable de email marketing, textual:
 *"la cantidad de mensajes que envío están llegando a spam."*
 
 Con ~250K registros sin limpiar, la tentación permanente es "mandarle a toda la base". Eso es

@@ -14,6 +14,14 @@ Semana {inicio} a {fin} · vs semana anterior ({inicio prev} a {fin prev}) · Em
 Fuentes: {lista de sistemas usados}
 Cierre de datos: {fecha} {hora} COT. Cifras de cierre sujetas a maduración — ver nota de ventanas.
 
+METAS POR PROCESO
+| Proceso | Meta {mes} | Real al {fecha} | % | Ritmo necesario/día | Estado | Fuente |
+| Reactivación | … | … | … | … | adelante · en línea · atrás | panel de reactivación / Zoho |
+| Orgánico | … |
+| Pauta | … |
+| Referidos | … |
+{Fila sin meta: "sin meta cargada". Nunca se infiere.}
+
 LO QUE PASÓ
 {4-6 líneas de prosa. Qué se movió, dónde está concentrado, qué se movió del otro lado.
 Nivel 1 mínimo, nunca nivel 0.}
@@ -30,7 +38,7 @@ ALERTAS (máx. 3)   🔴 bloquea · 🟠 hay que resolver · 🟡 vigilar
 RECOMENDACIONES (máx. 3)
 | # | Qué hacer | Por qué | Dueño sugerido |
 |---|---|---|---|
-| 1 | {verbo concreto + objeto} | {por qué, con cifra} | {Alejandra / Lizeth / agencia / admin CRM} |
+| 1 | {verbo concreto + objeto} | {por qué, con cifra} | {diseño / gerente de Growth / agencia / admin CRM} |
 
 Recordatorio: ninguna de estas acciones lanza pauta. Todas terminan en revisión humana.
 
@@ -99,9 +107,9 @@ $43 a $50. Los demás canales se movieron dentro del rango normal de las última
 
 | # | Qué hacer | Por qué | Dueño sugerido |
 |---|---|---|---|
-| 1 | Pedirle a la agencia el corte de frecuencia y CTR por anuncio de los últimos 30 días | Confirma o descarta el desgaste de creativo antes de tocar presupuesto | Alejandra |
-| 2 | Habilitar en Zoho un campo que marque el origen del lead de evento (pauta / base / comercial) | Desbloquea el CPL de Eventos, hoy no emitible | Alejandra + admin de CRM |
-| 3 | Programar una campaña de conversión de email para semana del 10-ago | Canal de [cifra interna]/cierre inactivo 3 semanas | Lizeth define la oferta |
+| 1 | Pedirle a la agencia el corte de frecuencia y CTR por anuncio de los últimos 30 días | Confirma o descarta el desgaste de creativo antes de tocar presupuesto | Diseño |
+| 2 | Habilitar en Zoho un campo que marque el origen del lead de evento (pauta / base / comercial) | Desbloquea el CPL de Eventos, hoy no emitible | Diseño + admin de CRM |
+| 3 | Programar una campaña de conversión de email para semana del 10-ago | Canal de [cifra interna]/cierre inactivo 3 semanas | La gerente de Growth define la oferta |
 
 *Recordatorio: ninguna de estas acciones lanza pauta. Todas terminan en revisión humana.*
 

@@ -1,237 +1,184 @@
 ---
 name: viventa-ciclo-referidor
 description: >-
-  Cubre el ciclo de vida del referidor que kit-referidor deja abierto: aquel activa a un aliado
-  nuevo y ahí termina. Este produce la parrilla de contenidos mensual del negocio aliado, la
-  secuencia de 3 correos que lo reactiva cuando deja de referir, y el correo de resultados que el
-  consultor le manda con lo que sus referidos generaron. Hereda el gate de kit-referidor: sin
-  documento vigente del programa, ninguna cifra de incentivo se escribe.
+  Redacta, para un negocio aliado ya activo del programa Referidores Pro de Viventa, una de tres
+  piezas: la parrilla mensual de contenidos, el correo de reactivación que toca según los días sin
+  referir (máximo 3), o el correo de resultados del consultor con los datos del CRM marcados. Sin
+  documento vigente del programa no escribe montos. USA cuando: "parrilla de contenidos del
+  referidor", "qué le publicamos este mes al negocio aliado", "el aliado dejó de mandar referidos",
+  "correo de resultados para el consultor". Es sostener, no activar: viventa-kit-referidor arma el
+  kit del referidor nuevo y viventa-reactivacion-lead reabre leads, no aliados.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   domain: "acquire"
   client: "viventa"
   blueprint: "marketing"
-  complexity: "medium"
+  complexity: "standalone"
 ---
 
 # viventa-ciclo-referidor
 
-Produce **lo que pasa después de la bienvenida**: el contenido mensual del negocio aliado, los
-correos que lo reactivan cuando se enfría, y el reporte que su consultor le manda.
+Produce lo que pasa después de la bienvenida del referidor: el contenido mensual del negocio
+aliado, los correos que lo reactivan cuando se enfría y el reporte que le manda su consultor. En
+toda corrida preserva tres cosas: **ninguna cifra de incentivo sin documento vigente**, **ningún
+dato de resultados estimado** y **nada se envía ni se publica** — termina en un documento que la
+coordinación del programa revisa. Un modo por corrida, una sola pasada, sin research.
 
-**Quién lo usa:** Lizeth Henríquez, que hoy hace estas tres cosas a mano y sola.
+**Qué no arregla.** El programa no falla en la activación sino en el sostenimiento (k-factor de
+referidos en [cifra interna] contra un benchmark de 15-30 %, ver `references/cifras-canonicas.md`), y la
+causa raíz documentada son los **pagos atrasados** por deuda técnica del CRM, no el contenido. Este
+skill quita trabajo repetitivo; no resuelve el pago y no se presenta como si lo hiciera.
 
-**La regla que gobierna todo:** este skill **redacta**. No envía, no publica, no calcula
-comisiones y no accede al CRM. Termina en un documento que un humano revisa.
+## Cuándo usar
 
-**Una sola pasada.** Cuentas compartidas, créditos limitados. Sin loops, sin research.
+- Explícito: "parrilla de contenidos del referidor", "qué le publicamos este mes al negocio
+  aliado", "contenido mensual del negocio referidor", "el aliado dejó de mandar referidos",
+  "correos para reactivar un aliado que no refiere", "correo de resultados para el consultor".
+- Implícito: cierre de mes (parrilla o resultados) o un aliado que cruzó 30, 60 o 90 días sin
+  referir.
 
----
+## Cuándo NO usar
 
-## Por qué este skill existe
-
-`viventa-kit-referidor` activa a un referidor nuevo: flyer, correo de bienvenida, 3 mensajes
-reenviables. Y ahí termina. **El programa Referidores Pro no falla en la activación — falla en
-el sostenimiento.**
-
-Los números lo dicen: el **k-factor de referidos está en [cifra interna] contra un benchmark de 15-30 %**.
-No es un problema de captar aliados; es que dejan de referir.
-
-⚠️ **Y la causa raíz no es contenido.** Lizeth, textual:
-
-> *"se ha atrasado sobre todo la parte de pagos… la respuesta de los comerciales es 'cuando esto
-> funcione, te busco más referidores'."*
-
-**Este skill no arregla el programa.** Arregla las tres tareas repetitivas que hoy consumen a
-Lizeth. El cuello — pagos atrasados por deuda técnica del CRM — está en el backlog de integración
-(#4) y **no se resuelve con IA**. Decir lo contrario sería vender humo.
-
----
-
-## Reglas duras (si una se rompe, el entregable no sale)
-
-1. **Gate 0.1, heredado de `viventa-kit-referidor`, sin excepción:** no existe documento vigente
-   del programa Referidores Pro. **Prohibido absoluto escribir cifras de incentivo.** Los $200 y
-   $500 que circulan son **recomendación del diagnóstico, no política vigente**. Si el documento
-   no está en el input, todo monto sale como `[falta: documento del programa]` y el entregable lo
-   dice arriba, en la primera línea.
-2. **Los datos de resultados salen del CRM, no del skill.** El correo al consultor se entrega con
-   los huecos marcados `[dato: CRM]`. **Nunca se estima cuántos referidos trajo alguien.**
-3. **Cero PII de los referidos.** El correo al consultor habla de conteos y estados, nunca de los
-   nombres de las personas referidas.
-4. **Nunca tasa, cuota, plazo ni cuota inicial** (Reg Z). Nunca prometer aprobación de crédito.
-   El aliado no es asesor financiero y su contenido no puede sonar a que lo es.
-5. **Disclosure de comisión obligatorio** en toda pieza donde el referidor invite a alguien. Si
-   el monto no se puede escribir (regla 1), el disclosure igual va: *"recibo una comisión por cada
-   persona que llega por mi recomendación."*
-6. **Cero placeholders en copy.** Dato que falta → `⛔ INPUT REQUERIDO: {qué} → pedir a: {quién}`.
-7. **La parrilla se dimensiona al negocio concreto,** no es una plantilla genérica. Si no hay
-   datos del negocio, el skill los pide en vez de producir contenido intercambiable.
-8. **Español de Colombia, tuteo.**
-9. El skill **no aprueba, no publica y no envía**.
-
----
+- **Referidor nuevo, sin kit todavía** → `viventa-kit-referidor` (flyer, bienvenida, mensajes).
+- **Un lead que se cayó del proceso** (no un aliado) → `viventa-reactivacion-lead`.
+- **Comunicaciones de la base propia de Viventa** → `viventa-parrilla-base`.
+- **Calcular o pagar comisiones** → no es de ningún skill: es el CRM (Zoho).
 
 ## Input del usuario
 
-| Input | Obligatorio | Si falta |
+| Campo | De dónde sale | Si falta, preguntar |
 |---|---|---|
-| **Modo**: `parrilla` · `reactivacion` · `resultados` | **Sí** | Preguntar. Los tres no corren juntos |
-| Nombre y rubro del negocio aliado | **Sí — bloqueante** | **PARAR.** Sin esto solo sale plantilla genérica |
-| **Documento vigente del programa** (incentivos, montos, momento de pago) | No, pero **condiciona todo** | Se produce con montos en `[falta: documento del programa]` y aviso arriba |
-| Ciudad y país del negocio | Sí | Bloquea la localización del contenido |
-| Público del negocio aliado | No | Usar el ICP Viventa y declarar el supuesto |
-| **Modo parrilla:** mes objetivo y frecuencia | Sí | Asumir 4 piezas/mes y decirlo |
-| **Modo reactivación:** días sin referir | Sí | **PARAR.** Define cuál de los 3 correos aplica |
-| **Modo resultados:** referidos, estado y periodo | No | Se entrega la plantilla con `[dato: CRM]` |
-
----
+| Modo: `parrilla` · `reactivacion` · `resultados` | El pedido del usuario | *"¿Qué necesitás: la parrilla del mes, un correo de reactivación o el correo de resultados?"* Uno solo por corrida |
+| Nombre y rubro del negocio aliado | El usuario o la ficha del aliado | *"¿Cómo se llama el negocio aliado y a qué se dedica?"* — **bloqueante en los tres modos** (Paso 1) |
+| Documento vigente del programa (incentivos, montos, momento de pago) | Comercial / coordinación del programa | *"¿Tenés el documento vigente de Referidores Pro?"* — si no, se sigue con montos marcados (Paso 2) |
+| **Parrilla:** ciudad y país del negocio | El usuario | *"¿En qué ciudad y país está el negocio?"* — bloqueante: sin esto no se localiza el contenido |
+| **Parrilla:** público del negocio | El usuario | *"¿Quiénes son sus clientes?"* — si no lo sabe, se usa el ICP de `references/contexto-viventa.md` y se declara el supuesto |
+| **Parrilla:** mes y frecuencia | El usuario | *"¿Para qué mes y cuántas piezas?"* — si no responde, mes siguiente y 4 piezas, declarado |
+| **Reactivación:** días sin referir | CRM o el usuario | *"¿Cuántos días lleva sin mandar un referido?"* — bloqueante: define el correo |
+| **Reactivación:** último correo de reactivación que recibió (ninguno, R1, R2, R3) | El usuario | *"¿Ya le mandaron alguno de los correos de reactivación? ¿Cuál y cuándo?"* — si no sabe, se asume ninguno y se declara |
+| **Resultados:** periodo | El usuario | *"¿Qué periodo cubre el reporte?"* — si no responde, el mes cerrado anterior, declarado en la primera línea del correo |
+| **Resultados:** nombre y canal del consultor que firma | El usuario | *"¿Quién firma el correo y por qué canal lo contactan?"* — si falta, `⛔ INPUT REQUERIDO` en firma y disponibilidad |
 
 ## Workflow
 
-### Fase 1 — Gate
+1. **Chequeá el modo y el negocio.** Si el pedido mezcla modos, preguntá cuál va primero: cada
+   modo tiene destinatario y momento distintos (ver `references/modos-y-disparadores.md`). Si
+   falta nombre o rubro del aliado, o un dato marcado bloqueante del modo, detenete y devolvé solo:
 
-Chequeá el modo y el negocio. Si falta el nombre o el rubro, **detenete**:
+   ```
+   ⛔ NO SE PUEDE GENERAR — {modo}
+   INPUTS REQUERIDOS
+   - {dato} → pedir a: {quién}
+   Motivo: sin el negocio concreto solo sale una plantilla intercambiable.
+   ```
 
-```
-⛔ NO SE PUEDE GENERAR — {modo}
+2. **Chequeá el documento del programa, antes de escribir nada.**
+   - Está en el input → los montos se toman **solo** de ahí, citando la sección.
+   - No está → la primera línea del entregable es:
+     ```
+     ⚠️ SIN DOCUMENTO VIGENTE DEL PROGRAMA REFERIDORES PRO
+     Todos los montos de incentivo salen como [falta: documento del programa].
+     No se escribió ninguna cifra. Pedir el documento a: coordinación del programa / Comercial.
+     ```
+     y todo monto queda `[falta: documento del programa]`. Los valores que circulan en el
+     diagnóstico son recomendación, no política: no se usan "por esta vez".
 
-INPUTS REQUERIDOS
-- Nombre y rubro del negocio aliado → pedir a: Lizeth
-- {otros faltantes}
+3. **Ejecutá el modo pedido.**
 
-Motivo: sin el negocio concreto solo sale una plantilla intercambiable, que es lo que ya existe.
-```
+   **`parrilla`** — una fila por pieza: fecha · formato · ángulo · copy completo · CTA · notas.
+   - Ángulos en este orden, uno por pieza, y se repite el ciclo si hay más de 4 (con menos de 4 se
+     toman los primeros; heurística propia, ajustable): **Servicio** (qué resuelve Viventa para
+     *sus* clientes) · **Prueba** (un dato de `references/cifras-canonicas.md`; si no está ahí, no
+     va) · **Objeción** (uno de los tres miedos de la categoría, respondido con un hecho
+     verificable) · **Invitación directa** (con disclosure de comisión).
+   - Escribí desde el negocio aliado, localizado a su ciudad y público. Prueba antes de emitir:
+     *¿esto lo escribiría el dueño del negocio?* Si suena a comunicado de Viventa, reescribilo.
+   - "Raíces / volver a casa" solo como emoción de fondo, nunca como ángulo principal.
 
-### Fase 1.5 — Chequeo del documento del programa
+   **`reactivacion`** — elegí el correo por días sin referir:
 
-**Antes de escribir nada**, verificá si el documento vigente está en el input.
+   | Días sin referir | Correo | Ángulo |
+   |---|---|---|
+   | < 30 | ninguno | No toca reactivar: decilo y no redactes |
+   | 30-59 | R1 | Recordatorio útil para el aliado. Sin reproche |
+   | 60-89 | R2 | Qué lograron otros aliados — solo con datos del input o `[dato: CRM]` |
+   | ≥ 90 | R3 | Pregunta directa: qué lo frenó. No vende |
 
-Si **no está**, el entregable arranca con:
+   Los límites caen en el tramo siguiente (30 → R1, 60 → R2, 90 → R3). Si el correo que toca ya
+   se le mandó, o pasaron menos de 30 días desde el último, no redactes y decí cuándo corresponde.
+   Si ya recibió R3, **sale de la secuencia**: entregá solo la marca `→ conversación humana` y no
+   redactes un R4. R3 acepta que la respuesta sea un reclamo por pagos: el correo no se defiende
+   ni promete fechas de pago.
 
-```
-⚠️ SIN DOCUMENTO VIGENTE DEL PROGRAMA REFERIDORES PRO
-Todos los montos de incentivo salen como [falta: documento del programa].
-No se escribió ninguna cifra. Pedir el documento a: Lizeth / Comercial.
-```
+   **`resultados`** — estructura fija: saludo del consultor con su nombre · qué pasó en el
+   periodo · qué sigue · disponibilidad (nombre y canal). El skill no accede al CRM: **todo** dato
+   duro sale vacío como `[dato: CRM · campo "…"]`, con el campo nombrado (p.ej. `estado
+   "Desembolsado"`), para llenarse a mano o por merge — aunque el usuario dicte un número en el
+   chat. "Qué sigue" describe los estados tal cual ("en proceso" es "en proceso"): no se anticipa
+   desembolso ni comisión.
 
-Y **todo monto** queda así. No hay excepción "por esta vez", ni "usando el del diagnóstico".
+4. **Autovalidá** contra la lista de abajo y corregí antes de emitir.
+   - Montos: cero cifras de incentivo sin documento; ninguna "deducida" del diagnóstico ni de una
+     corrida anterior; el aviso del Paso 2 en la primera línea si aplica.
+   - Datos: cero conteos estimados; cero nombres de personas referidas; nada "en proceso"
+     descrito como cerrado.
+   - Contenido: un modo; parrilla atada al negocio; disclosure en toda invitación; reactivación
+     con su tramo declarado.
+   - Legal: cero tasa, cuota, plazo o cuota inicial; cero promesa de aprobación; el aliado nunca
+     suena a asesor financiero.
 
-### Fase 2 — Ejecutar el modo
+5. **Entregá** el documento (ver Output esperado) y cerrá con lo que falta pedir y a quién.
 
-Los tres modos **nunca corren juntos**. Uno por corrida.
+## Reglas duras
 
-#### Modo `parrilla`
+- **Nunca escribe una cifra de incentivo** que no salga del documento vigente del programa. Sin
+  documento, `[falta: documento del programa]` y el aviso en la primera línea.
+- **Nunca escribe un conteo ni un estado de referidos**: queda `[dato: CRM · campo]` para llenar desde el CRM.
+- **Nunca nombra a una persona referida.** Solo conteos y estados.
+- **Nunca menciona tasa, cuota, plazo ni cuota inicial** (triggering terms de Reg Z) y nunca
+  promete aprobación de crédito.
+- **Nunca omite el disclosure de comisión** en una pieza donde el aliado invita a alguien. Sin
+  monto, igual va: *"recibo una comisión por cada persona que llega por mi recomendación."*
+- **Nunca deja un placeholder suelto en el copy.** Solo valen tres marcas: `[falta: documento del
+  programa]`, `[dato: CRM · campo]` y `⛔ INPUT REQUERIDO: {qué} → pedir a: {quién}`. Permitido:
+  `Cerrados: [dato: CRM · estado "Desembolsado"]`. Prohibido: `Hola {nombre}`, `XXX`, `[insertar dato]`.
+- **Nunca redacta un cuarto correo de reactivación.**
+- **Nunca envía, publica ni aprueba**, ni presenta este skill como la solución del programa.
+  Español de Colombia, tuteo.
 
-Contenido mensual para el negocio aliado. Default: **4 piezas/mes**.
+## Output esperado
 
-Cada fila: fecha · formato · ángulo · copy completo · CTA · notas de pieza.
-
-Reparto de ángulos, uno por semana:
-1. **Servicio** — qué resuelve Viventa para los clientes del aliado
-2. **Prueba** — un caso o dato duro (bancos, años, constructoras)
-3. **Objeción** — el miedo más común, respondido
-4. **Invitación directa** — con disclosure de comisión
-
-**El contenido habla desde el negocio aliado, no desde Viventa.** Un cliente del aliado lo sigue
-a él, no a nosotros. Un copy que suena a marca corporativa no lo publica.
-
-#### Modo `reactivacion`
-
-3 correos escalonados, cada uno con su disparador declarado:
-
-| Correo | Disparador | Ángulo |
-|---|---|---|
-| R1 | 30 días sin referir | Recordatorio útil. Sin reproche |
-| R2 | 60 días | Prueba: qué lograron otros aliados |
-| R3 | 90 días | Pregunta directa: qué lo frenó |
-
-**R3 pregunta, no insiste.** A los 90 días la respuesta más probable es que el programa le falló
-—típicamente el pago—, y un correo de venta ahí quema el vínculo. R3 abre conversación.
-
-**Techo: 3 intentos.** Después, el aliado sale de la secuencia. Se marca para conversación humana.
-
-#### Modo `resultados`
-
-Correo del consultor a su referidor con lo que trajeron sus referidos.
-
-Estructura fija: saludo · qué pasó en el periodo · qué sigue · disponibilidad del consultor.
-
-Todos los datos duros salen como `[dato: CRM]` con el nombre exacto del campo, para que se llene
-a mano o por merge. **Nunca se estima un conteo.**
-
-Si el estado del referido es "en proceso", se dice "en proceso" — **no se anticipa un desembolso**
-ni se sugiere que la comisión está por llegar.
-
-### Fase 3 — Autovalidación
-
-Corré el checklist. Si algo falla, corregilo antes de emitir.
-
----
-
-## Formato del entregable
+Un Markdown en `salidas/viventa-ciclo-referidor/{modo}-{slug-del-aliado}-{AAAA-MM}.md`,
+mostrado también en la conversación:
 
 ```
 # {Modo} — {Negocio aliado} · {mes o periodo}
 
-{aviso del Gate 1.5 si aplica}
+{aviso del Paso 2, si aplica — primera línea}
 
-## {Bloque según modo}
-...
+## Parrilla | Correo R{n} (disparador: {días} días sin referir) | Correo de resultados
+{tabla de piezas, o asunto + cuerpo del correo}
+
+## Supuestos declarados
+{público por ICP, frecuencia por defecto, "sin correos previos", etc. — o "ninguno"}
 
 ## Qué falta
-{inputs pendientes con a quién pedírselos}
+{cada marca pendiente → a quién pedírsela — o "nada"}
 ```
 
----
+Si el Paso 1 detiene la corrida, no se escribe archivo: se devuelve solo el bloque `⛔`. Al
+terminar, decile al usuario: *"Quedó en {ruta}. Revisalo antes de mandarlo o publicarlo; faltan
+{n} datos, listados al final."*
 
-## Fronteras
+## Skills relacionados
 
-| Este skill | El otro |
-|---|---|
-| Sostiene al referidor ya activo | `viventa-kit-referidor` lo **activa** (flyer, bienvenida, mensajes) |
-| Contenido del **negocio aliado** | `viventa-parrilla-base` planifica la base de **Viventa** |
-| No calcula ni promete comisiones | Eso es Zoho, y hoy está roto (backlog #4) |
+- **Antes:** `viventa-kit-referidor` activa al referidor; este lo sostiene.
+- **Después:** `viventa-qa-marca` para pasar la parrilla por la revisión legal y de marca antes de
+  que el aliado la publique.
+- **En vez de este:** `viventa-reactivacion-lead` si quien se enfrió es un lead, no un aliado;
+  `viventa-parrilla-base` para las comunicaciones de la base propia de Viventa.
 
----
-
-## Checklist de autovalidación
-
-**A · El gate**
-- [ ] Verifiqué si el documento vigente del programa está en el input
-- [ ] Si no está, el aviso está en la **primera línea** del entregable
-- [ ] **Cero cifras de incentivo escritas.** Ningún $200, ningún $500, ningún porcentaje
-- [ ] Ningún monto se "dedujo" del diagnóstico ni de una corrida anterior
-
-**B · Datos**
-- [ ] Todo dato de resultados sale como `[dato: CRM]` con el campo nombrado
-- [ ] Cero conteos de referidos estimados
-- [ ] Cero PII de personas referidas
-- [ ] Ningún referido "en proceso" descrito como cerrado
-
-**C · Contenido**
-- [ ] Un solo modo por corrida
-- [ ] La parrilla está dimensionada al negocio concreto, no es genérica
-- [ ] El copy habla desde el aliado, no desde Viventa
-- [ ] Disclosure de comisión en toda pieza de invitación
-- [ ] Reactivación: máximo 3 correos, con disparador declarado en cada uno
-- [ ] R3 pregunta qué lo frenó; no vende
-
-**D · Legal**
-- [ ] Cero tasa, cuota, plazo, cuota inicial
-- [ ] Cero promesa de aprobación de crédito
-- [ ] El aliado no aparece dando asesoría financiera
-
-**E · Alcance**
-- [ ] El entregable no envía, no publica y no aprueba
-- [ ] No se prometió que este skill resuelve el programa de referidores
-
----
-
-## Referencias
-
-- `references/modos-y-disparadores.md` — los 3 modos en detalle, la secuencia de reactivación y
-  por qué el techo es 3
-- `references/cifras-canonicas.md` — fuente de verdad de todo número
-- `references/contexto-viventa.md` — contexto del cliente
-- `references/voice-of-customer-90d.md` — verbatims
+Referencias: `references/modos-y-disparadores.md` (detalle de los modos y por qué el techo es 3),
+`references/cifras-canonicas.md` (fuente de todo número), `references/contexto-viventa.md` (ICP y
+contexto), `references/voice-of-customer-90d.md` (verbatims). Las tres últimas las agrega el
+empaquetado del plugin del cliente.

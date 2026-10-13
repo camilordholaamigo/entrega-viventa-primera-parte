@@ -1,10 +1,10 @@
 # Piso legal por canal y mercado — detalle
 
-Referencia de consulta para `viventa-reactivacion-lead`. El resumen operativo está en la Fase 6 del
+Referencia de consulta para `viventa-reactivacion-lead`. El resumen operativo está en el Paso 3 del
 SKILL.md. Acá va el detalle y las decisiones ya tomadas, para no re-investigar.
 
 > **Esto no es asesoría legal.** Es el piso operativo que el equipo de Growth aplica. Cualquier caso
-> de borde escala a Daniel y, si hace falta, a legal.
+> de borde escala al aprobador de Growth y, si hace falta, a legal.
 
 ---
 
@@ -50,7 +50,7 @@ Google y Yahoo (2024 en adelante) exigen a los remitentes masivos:
 
 **Por qué importa acá:** el dominio de Viventa **ya cae en spam** y la base es de 250K registros con
 límite de envíos por calidad. Cada envío inútil de reactivación degrada la reputación del remitente
-para toda la operación. Este es el argumento técnico detrás del tope de 3 intentos (Fase 5.2 del
+para toda la operación. Este es el argumento técnico detrás del tope de 3 intentos (Paso 2 del
 SKILL.md).
 
 **Pie de email obligatorio** — el skill lo incluye siempre en la ficha del mensaje:
@@ -210,5 +210,5 @@ de cierre de inscripciones. Sin dato → sin plazo.
   estratégico", "asesoría personalizada".
 - **VA loan no financia propiedad fuera de EE.UU. ni de sus territorios.** Nunca insinuar lo
   contrario.
-- **Ninguna campaña sale al aire sin revisión humana** (Daniel). Este skill termina en un entregable
+- **Ninguna campaña sale al aire sin revisión humana** (aprobador de Growth). Este skill termina en un entregable
   para aprobar, nunca en un envío.

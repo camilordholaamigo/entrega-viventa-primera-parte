@@ -19,7 +19,7 @@ meta_registros   = leads_atendibles ÷ (1 − tasa_no_show)
 | `tasa_no_show` | 40% | Eventos gratuitos: 28% en un dataset medido; fuentes de industria citan 40-60% | Media |
 
 **Ajuste por modalidad** — `[⚠ no verificado]`: heurística propuesta, **no es dato de Viventa**.
-Validar con Lizeth antes de usarla como regla. Si se aplica, decirlo en la línea `Supuesto:`.
+Validar con la gerente de Growth antes de usarla como regla. Si se aplica, decirlo en la línea `Supuesto:`.
 
 | Modalidad | Multiplicador |
 |---|---|
@@ -58,7 +58,7 @@ cierres_Vive = meta_registros × [cifra interna]
 | Conversión a desembolso / cierre | [cifra interna] | KPI distinto del de abajo. Nunca se suman ni se promedian |
 | Conversión a pago de servicio | [cifra interna] | |
 | Ticket Servicio Viventa | USD 480 | |
-| CAC canal eventos | [cifra interna] por cierre | CAC = costo por **cierre** |
+| CAC fully-loaded canal eventos | [cifra interna] por cierre | CAC = costo por **cierre**. Mismo valor que usan `viventa-monitor-evento` y `viventa-forecast-pauta` |
 | CPL Meta | ≈ [cifra interna] (estimado) | CPL = costo por **lead** |
 | Composición de leads | 85% desde USA | KPI de la productora de contenidos. **No aplica a eventos europeos** — señalarlo y pedir la meta correcta |
 | Ventas YoY | [cifra interna] · Leads YoY [cifra interna] | |
@@ -93,8 +93,8 @@ flyers     = 3 (A3, A4, pieza de redes) × N_consultoras × N_ciudades
 | Moneda (USD/EUR) | No | Se deriva del país |
 | Formato (9:16 / 1:1) | No | Son exports del mismo copy |
 
-Referencia real: ExpoColombia Tampa = **57 archivos pero solo 20 unidades de copy**. El trabajo
-intelectual está en las 20.
+Referencia real: ExpoColombia Tampa = **57 archivos pero solo 15 unidades de copy** (conteo de `viventa-pack-evento`). El trabajo
+intelectual está en las 15.
 
 Nota de formato: Meta ya recomienda **4:5 en vez de 1:1**, y Viventa produce todo en 1:1. Si el
 brief menciona formatos, dejar la observación; no cambiar el estándar por cuenta propia.

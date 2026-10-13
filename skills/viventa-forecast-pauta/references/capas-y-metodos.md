@@ -7,7 +7,7 @@ Referencia de `viventa-forecast-pauta`, Fases 2 y 3.
 ## Por qué existen 4 capas y no un número
 
 El dolor que ataca el skill es de **latencia, no de aritmética**: la información de gasto llega
-20-25 días tarde, cuando la decisión ya se tomó. Lizeth, textual:
+20-25 días tarde, cuando la decisión ya se tomó. La gerente de Growth, textual:
 
 > *"estamos al 15 de junio y yo tengo la información hasta mayo… cuando llega la información de
 > junio me doy cuenta que se sobre ejecutó."*
@@ -27,7 +27,7 @@ Es también el más viejo: si contabilidad cierra con 20 días de rezago, la cap
 puede estar **casi vacía** y eso no significa que no se haya gastado nada.
 
 ⚠️ **Modo de falla:** leer capa 1 baja como "vamos bien de presupuesto". Es el error que produce la
-sobre-ejecución que Lizeth describe. Si capa 1 es la única con datos, el forecast **no se emite**:
+sobre-ejecución que describe la gerente de Growth. Si capa 1 es la única con datos, el forecast **no se emite**:
 se emite el pedido del spend-to-date del Ads Manager.
 
 ---

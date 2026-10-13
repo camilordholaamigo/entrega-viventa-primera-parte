@@ -3,13 +3,13 @@
 Registro persistente + criterios de distinción para `viventa-inteligencia-campana`.
 
 Existe porque hoy cada campaña arranca de cero y "qué ángulos ya usamos" vive en la memoria de
-Lizeth. El banco convierte esa memoria en un archivo consultable.
+la gerente de Growth. El banco convierte esa memoria en un archivo consultable.
 
 ---
 
 ## 1. El archivo
 
-**Ruta:** `angulos-usados.md` (en la carpeta de la skill)
+**Ruta:** `$AIOS_STATE/viventa-inteligencia-campana/angulos-usados.md` (estado local del cliente: no se versiona con el skill)
 
 Si no existe, el skill lo crea con el encabezado de la tabla y sigue. **No bloquea la pasada.**
 
@@ -129,7 +129,7 @@ Estos no entran nunca. Van directo al bloque 4 del entregable si alguien los pro
 | **"Cumple tu sueño" / "haz realidad tu sueño"** | Genérico, sin enemigo, no auto-selecciona a nadie. En un auction saturado paga el volumen sin traer intención. |
 | **Cualquier promesa de aprobación** | Regla durable de marca + riesgo de rechazo con Meta Financial Services. |
 | **Tasa, cuota o plazo con cifra** | Triggering terms de Reg Z (12 CFR 1026.24). Mencionar uno obliga a disclosear APR y el resto con igual prominencia, y **un disclaimer no lo cura**. El marketing entrega precio de vivienda; tasa, cuota y plazo los da el asesor en llamada. |
-| **Proyección de valorización o rentabilidad garantizada** | Promesa no sostenible. Si Lizeth entrega datos reales de rentabilidad, se enuncian como histórico con fuente, nunca como proyección. |
+| **Proyección de valorización o rentabilidad garantizada** | Promesa no sostenible. Si la gerente de Growth entrega datos reales de rentabilidad, se enuncian como histórico con fuente, nunca como proyección. |
 | **Evento sin dirección concreta** | Reactiva la fricción #1 del VOC. Un evento sin dirección no se anuncia. |
 | **"Usá tu VA loan en Colombia"** | Falso. El VA loan no financia propiedad fuera de EE.UU. ni sus territorios. Ver `dolores-y-verbatims.md` §5.1. |
 
@@ -150,6 +150,6 @@ anti-pattern de "copiar el brief de otra ciudad".
 | **"Es que en Colombia todo es robo"** | La desconfianza | 20 años, 5 bancos aliados, ~20 constructoras con nombre | El desconfiado que aún así está mirando |
 | **Sin un peso ahorrado también arranca** | La creencia de que hace falta la cuota inicial | Programa FNA / "Mi Casa en Colombia" enunciado como programa existente | El que cree que no le alcanza |
 
-Ángulo pendiente de explorar, señalado por Lizeth: **retorno de inversión con la bajada del
+Ángulo pendiente de explorar, señalado por la gerente de Growth: **retorno de inversión con la bajada del
 dólar**. Ella tiene datos de rentabilidad. Hasta que esos datos entren al skill con fuente y
 fecha, el ángulo se enuncia en el bloque 6 como pregunta abierta, no como ángulo.

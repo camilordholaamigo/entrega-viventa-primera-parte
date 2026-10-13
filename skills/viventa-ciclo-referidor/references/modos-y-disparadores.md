@@ -74,7 +74,7 @@ A los 90 días, **la explicación más probable es que el programa le falló al 
 La causa documentada es el pago:
 
 > *"se ha atrasado sobre todo la parte de pagos… la respuesta de los comerciales es 'cuando esto
-> funcione, te busco más referidores'."* — Lizeth
+> funcione, te busco más referidores'."* — coordinación del programa
 
 Mandarle un correo de venta a alguien que no cobró lo que le deben quema el vínculo de forma
 permanente. R3 abre conversación y **acepta que la respuesta puede ser un reclamo** — de hecho, si

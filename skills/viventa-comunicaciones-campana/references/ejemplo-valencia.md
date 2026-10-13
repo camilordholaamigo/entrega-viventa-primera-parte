@@ -41,7 +41,7 @@
 | **E5-B** | 21 sep | lun | Email | **Registrados que NO fueron** | Proof → Plan | Segunda puerta, sin culpa |
 | **W5-A/B** | 22 sep | mar | WhatsApp | Idem, split | — | Cierre del loop |
 
-**Total: 6 emails · 5 WhatsApp.** Ningún contacto recibe las 11 piezas — el máximo real por persona
+**Total: 7 emails · 6 WhatsApp** (regla de conteo del SKILL.md: E5-A/E5-B y W5-A/W5-B cuentan por separado; este ejemplo no incluye E0-B). Ningún contacto recibe las 13 piezas — el máximo real por persona
 es **4 emails + 3 WhatsApp en 21 días**.
 
 ---
@@ -128,7 +128,7 @@ Viventa · 20 años · 5 bancos aliados · Oficinas en Colombia, España y Estad
 ## W1 · 3 de septiembre — WhatsApp (37 palabras)
 
 ```
-Hola Marcela, soy Johana de Viventa 👋
+Hola Marcela, soy Lucía de Viventa 👋
 El sábado 19 estamos en Valencia, Av. de Francia 11, de 10 a 18h.
 Te sentás con una asesora y salís sabiendo si calificás para crédito en Colombia.
 ¿Te aparto un espacio?
@@ -349,7 +349,7 @@ Viventa · [Dirección postal] · [Darme de baja]
 ```
 Marcela, quedó pendiente lo de la certificación laboral y los extractos.
 Cuando los tengás me los pasás por acá y te armo el comparativo de cuota.
-Sin afán. — Johana, Viventa
+Sin afán. — Lucía, Viventa
 ```
 
 ## W5-B · 22 de septiembre (no asistió, 33 palabras)
@@ -398,7 +398,7 @@ conversación. Estos correos entregan a la persona al asesor; ahí termina el tr
   **`🚫 NO ENVIABLE HOY — canal WhatsApp USA bloqueado (Meta rechazó la verificación; en gestión vía
   10DLC/Twilio)`**.
 - Se agrega **E4-bis** (recordatorio 24 h por email, <80 palabras, solo dirección, hora y mapa) para
-  compensar el hueco de W3. Es el único caso donde USA lleva **7 emails** en vez de 6.
+  compensar el hueco de W3. Es el único caso donde la secuencia lleva un email más (**8** en este ejemplo, en vez de 7).
 
 Ejemplo de E4-bis:
 

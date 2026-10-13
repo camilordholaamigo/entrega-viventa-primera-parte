@@ -1,5 +1,5 @@
 # Instala en Claude Code las skills de Viventa.
-# Uso:  powershell -ExecutionPolicy Bypass -File .\instalar.ps1                    -> las 18
+# Uso:  powershell -ExecutionPolicy Bypass -File .\instalar.ps1                    -> las 28
 #       powershell -ExecutionPolicy Bypass -File .\instalar.ps1 lizeth-henriquez   -> solo las de esa persona
 param([string]$Persona = "")
 $ErrorActionPreference = "Stop"

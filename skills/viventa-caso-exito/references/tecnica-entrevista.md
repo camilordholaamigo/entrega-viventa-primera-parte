@@ -1,6 +1,6 @@
 # Técnica de entrevista — detalle
 
-Consulta puntual. Lo operativo está en `SKILL.md` Fase 2.
+Consulta puntual. Lo operativo está en `SKILL.md` Pasos 2 y 3.
 
 ## Por qué "¿cómo fue tu experiencia?" produce basura
 
@@ -62,9 +62,8 @@ que más veces produce la cita del Acto 1.
 1. **Clientes con desembolso reciente** (< 12 meses). La reconstrucción del miedo se degrada con el
    tiempo; JTBD recomienda switchers recientes.
 2. **Recompradores** — el activo más fuerte y más raro del sector. Que alguien vaya por la segunda
-   es el argumento anti-pérdida más fuerte que existe, y no requiere citar una cifra. Cinco ya
-   identificados en el VOC: @cliente, @cliente, @cliente, @cliente,
-   @cliente.
+   es el argumento anti-pérdida más fuerte que existe, y no requiere citar una cifra. El VOC de 90 días ya
+   identificó cinco (la lista de handles la tiene el equipo; no se copia en el skill).
 3. **Diversidad geográfica deliberada.** Hoy todo apunta a Miami-Dade (fricción #1 del VOC).
    Cuota: **no más de 2 casos consecutivos de la misma plaza**. Hay verbatims reales de Nueva York,
    España y Bonaire.

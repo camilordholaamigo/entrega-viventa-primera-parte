@@ -1,7 +1,7 @@
 # La sección de aprobadores — los 7 mecanismos
 
 Referencia de `viventa-brief-requerimiento`, Fase 4A §5. Esta sección pesa tanto como la del
-objetivo porque ataca la **prioridad #2 de Alejandra**: feedback tardío y contradictorio.
+objetivo porque ataca la **prioridad #2 de la diseñadora**: feedback tardío y contradictorio.
 
 Verbatim: *"los mayores reprocesos ocurren cuando cambian los textos, imágenes o lineamientos
 **después de haber iniciado el trabajo**"* y *"cuando intervienen varios aprobadores, las
@@ -25,25 +25,25 @@ El feedback contradictorio nace de mandarle la pieza a cinco personas al mismo t
 | Paso | Aprueba | Quién | Plazo |
 |---|---|---|---|
 | 1 | Contenido, oferta y datos del producto | El solicitante | 24 h hábiles |
-| 2 | Marca, tono y palabras prohibidas | Daniel Vélez (único aprobador de marca) | 24 h hábiles |
+| 2 | Marca, tono y palabras prohibidas | Aprobador de marca (único) | 24 h hábiles |
 | 3 | Claims financieros (cuota, tasa, "calificas", condiciones) | Área de Crédito | 48 h hábiles |
-| 4 | Presupuesto, solo si hay inversión de pauta | Lizeth / dirección financiera | 48 h hábiles |
+| 4 | Presupuesto, solo si hay inversión de pauta | Gerente de Growth / dirección financiera | 48 h hábiles |
 
 Los pasos **3 y 4 solo se activan si aplican**. Meterlos siempre es burocracia y el formato se
 abandona.
 
 > `[⚠ no verificado]` Los plazos (24/24/48/48) son un punto de partida derivado de un modelo de
 > decision-SLA por etapa. **Ninguna fuente los valida para Viventa y ningún entrevistado los
-> propuso.** Deben ratificarlos **Alejandra, Daniel y Lizeth** antes de adoptar el formato.
+> propuso.** Deben ratificarlos **la diseñadora, el aprobador de marca y la gerente de Growth** antes de adoptar el formato.
 > Un SLA que nadie firmó no es un SLA.
 
-> `[⚠ no verificado]` El **orden por defecto** (solicitante → Daniel → Crédito → Lizeth) se
+> `[⚠ no verificado]` El **orden por defecto** (solicitante → aprobador de marca → Crédito → gerente de Growth) se
 > infiere de `CONTEXT.md`. No está documentado como flujo formal.
 
 ## 3. Consolidador único
 
 Todas las observaciones pasan por una sola persona —el solicitante— que resuelve las
-contradicciones **antes** de que lleguen a Alejandra y entrega un set único y deduplicado. Es el
+contradicciones **antes** de que lleguen a la diseñadora y entrega un set único y deduplicado. Es el
 cambio de proceso que más reduce rondas, por encima de cualquier herramienta.
 
 ## 4. Canal único
@@ -58,10 +58,10 @@ empuja a dar feedback consolidado temprano.
 
 **Congelamiento:** aprobado el paso 2 (marca), todo cambio de texto, imagen o lineamiento entra
 como **SOLICITUD NUEVA**, no como observación. Este es el mecanismo que ataca literalmente el
-verbatim de Alejandra.
+verbatim de la diseñadora.
 
 > `[⚠ no verificado]` El tope de 2 rondas es una decisión de diseño calibrada contra la carga de
-> Alejandra (+500 piezas/mes). Las fuentes respaldan "poner un tope", no el número exacto.
+> la diseñadora (+500 piezas/mes). Las fuentes respaldan "poner un tope", no el número exacto.
 
 ## 6. Qué pasa si no responde — y por qué NO es auto-aprobación
 

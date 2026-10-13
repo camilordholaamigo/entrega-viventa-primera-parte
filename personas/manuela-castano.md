@@ -1,6 +1,6 @@
 # Manuela Castaño · Community manager
 
-Tu kit: **6 skills**. Para instalar solo las tuyas en Claude Code: `./instalar.sh manuela-castano` (Mac) o `.\instalar.ps1 manuela-castano` (Windows). En Claude web, sube los `.zip` de [descargas/](../descargas/).
+Tu kit: **7 skills**. Para instalar solo las tuyas en Claude Code: `./instalar.sh manuela-castano` (Mac) o `.\instalar.ps1 manuela-castano` (Windows). En Claude web, sube los `.zip` de [descargas/](../descargas/).
 
 ## Lo que nos contaste
 
@@ -27,19 +27,20 @@ Opera el día a día de las redes sociales. Arma la parrilla de contenidos cada 
 
 | Skill | Para qué | Estado |
 |---|---|---|
-| [`viventa-qa-marca`](../skills/viventa-qa-marca/SKILL.md) | Pre-filtro de la revisión de marca: revisa una pieza, copy, guion o landing en 5 capas (legal de crédito, cifras, palabras prohibidas, voz, reglas) y entrega las correcciones redactadas. | Corrida con material real |
-| [`viventa-inteligencia-campana`](../skills/viventa-inteligencia-campana/SKILL.md) | El insight de entrada de una campaña: target, 5-7 dolores con verbatims reales, 3 ángulos y 5 hooks listos para probar. Es el insumo para la agencia, no su reemplazo. | Lista · falta primera corrida con datos reales |
+| [`viventa-qa-marca`](../skills/viventa-qa-marca/SKILL.md) | Pre-filtro de la revisión de marca: revisa una pieza, copy, guion, landing, correo o plantilla de WhatsApp en 5 capas (legal de crédito, cifras, palabras prohibidas, voz, reglas del cliente y del canal), entrega las correcciones redactadas y arma el resumen del día. | Corrida con material real |
+| [`viventa-inteligencia-campana`](../skills/viventa-inteligencia-campana/SKILL.md) | El insight de entrada de una campaña: target, dolores con verbatims y señales frescas (comentarios, llamadas, Instagram y TikTok), 3 ángulos y 5 hooks; y, si se pide, el brief creativo con el paquete estándar de piezas o el set de optimización. | Lista · falta primera corrida con datos reales |
 | [`viventa-radar-competencia`](../skills/viventa-radar-competencia/SKILL.md) | El radar mensual: qué publicaron y pautaron los competidores, benchmark contra el sector y qué se dijo de Viventa. Cierra con qué cambió y qué implica para la parrilla. | Nueva (29-ago) · sin corrida |
-| [`viventa-reactivacion-lead`](../skills/viventa-reactivacion-lead/SKILL.md) | Mensajes 1 a 1 para retomar a quien se cayó: formulario a medias, DM sin responder, no-show de evento, frío de 3-6 meses. 3 variantes y máximo 3 intentos en 12 días. | Lista · falta primera corrida con datos reales |
+| [`viventa-reactivacion-lead`](../skills/viventa-reactivacion-lead/SKILL.md) | Mensajes 1 a 1 para retomar a quien se cayó: formulario a medias, DM sin responder, comentario «info», no-show, asesor sin cierre o frío. En modo lista arma la tanda del día de registros incompletos con el dato que falta y variantes que no se repiten. | Lista · falta primera corrida con datos reales |
 | [`viventa-ficha-proyecto`](../skills/viventa-ficha-proyecto/SKILL.md) | Convierte una fila de Vivehome en la ficha de 1 página de un proyecto, para que comercial la use en llamada y redes la convierta en pieza sin pedirle datos a nadie. | Lista · falta primera corrida con datos reales |
 | [`viventa-caso-exito`](../skills/viventa-caso-exito/SKILL.md) | Convierte clientes reales en casos de éxito: la guía de entrevista emocional o, con la entrevista hecha, el caso en 3 actos, un guion de 60-90 s y recortes para piezas. | Lista · falta primera corrida con datos reales |
+| [`viventa-datos-publicables`](../skills/viventa-datos-publicables/SKILL.md) | La hoja mensual de datos comerciales y de proyectos que se pueden publicar (viviendas vendidas, negocios cerrados, precios y disponibilidad): cada dato con fuente, fecha de corte, vigencia, quién lo aprobó y para qué sirve. Redacta el pedido a cada área y valida lo que vuelve. | Nueva (8-oct) · sin corrida |
 
 ## Por dónde empezar
 
 1. **`viventa-reactivacion-lead`** — Para los que dejaron el formulario a medias o no respondieron el DM: 3 variantes cercanas, máximo 3 intentos en 12 días.
-2. **`viventa-ficha-proyecto`** — Con la fila del proyecto en Vivehome tienes la ficha para hacer la pieza sin escribirle a ventas.
-3. **`viventa-radar-competencia`** — Una vez al mes, para ver qué publicó la competencia y qué implica para tu parrilla.
+2. **`viventa-datos-publicables`** — Una vez al mes: «¿qué datos de ventas puedo publicar este mes?». Te arma la hoja con fuente, fecha de corte y quién aprobó cada cifra, y el pedido a cada área.
+3. **`viventa-ficha-proyecto`** — Con la fila del proyecto en Vivehome tienes la ficha para hacer la pieza sin escribirle a ventas.
 
 ## Lo que todavía no resolvemos para ti
 
-Responder la bandeja de redes y tener las cifras comerciales del mes aprobadas son dos de las cuatro skills propuestas para la segunda parte. El acceso a los datos de ventas es un tema de permisos, no de skills.
+Responder la bandeja de redes es lo único de lo que nos contaste que todavía no tiene skill: queda propuesto para la siguiente tanda. El acceso directo a los datos de ventas es un tema de permisos.

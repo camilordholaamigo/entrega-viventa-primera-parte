@@ -48,8 +48,8 @@ en español sin adaptar nada más se lee como performativo. El contra-ejemplo es
 
 | # | Falla típica | Por qué duele en Viventa | Antídoto |
 |---|---|---|---|
-| 1 | **Matriz con placeholders** — `[ciudad]`, `[fecha]` | Alejandra tiene que completar 57 archivos a mano. El skill no ahorró nada | **Ningún corchete en la salida.** Si falta un dato obligatorio, emitir bloque `INPUTS REQUERIDOS` y no producir la matriz. Ese bloque es un output válido |
-| 2 | **Localización cosmética** — cambiar "Miami" por "Tampa" | Es exactamente el gap de Lizeth. Meta puede leer variantes estructuralmente similares como el mismo concepto para fatiga | Capa local con **6 campos obligatorios** + **al menos 1 elemento de prioridad 2**. Si no hay ninguno → `LOCALIZACIÓN SUPERFICIAL — revisar` |
+| 1 | **Matriz con placeholders** — `[ciudad]`, `[fecha]` | La diseñadora tiene que completar 57 archivos a mano. El skill no ahorró nada | **Ningún corchete en la salida.** Si falta un dato obligatorio, emitir bloque `INPUTS REQUERIDOS` y no producir la matriz. Ese bloque es un output válido |
+| 2 | **Localización cosmética** — cambiar "Miami" por "Tampa" | Es exactamente el gap que declaró la gerencia. Meta puede leer variantes estructuralmente similares como el mismo concepto para fatiga | Capa local con **6 campos obligatorios** + **al menos 1 elemento de prioridad 2**. Si no hay ninguno → `LOCALIZACIÓN SUPERFICIAL — revisar` |
 | 3 | **Inventar la conversión de moneda** | Publicar "desde 280 EUR" en Tampa, o convertir 280 USD → 258 EUR con una tasa inventada | Moneda **derivada del país** por tabla fija. Monto **siempre del input**. Cero conversión automática |
 | 4 | **Sobreproducción** — 40 filas de video "por si acaso" | Una sola editora, 3+ eventos/mes, cuentas de IA con límite. Una matriz de 200 filas no se ejecuta | Tope duro: **5 conceptos de video, 3 carruseles, 2 estáticas**. Si el input pide más, advertir y pedir priorizar |
 | 5 | **Ignorar límites de caracteres y safe zones** | El copy se corta en "ver más" justo antes de la dirección. El CTA queda debajo de la UI de Reels | Cada celda de copy Meta lleva su conteo. Notas de composición con la regla 14/35/6 en toda fila 9:16 |
@@ -57,7 +57,7 @@ en español sin adaptar nada más se lee como performativo. El contra-ejemplo es
 | 7 | **Inventar precios, tasas o condiciones de crédito** | Riesgo regulatorio y contradicción con Crédito | Lista blanca: solo cifras presentes en el input o en el máster aprobado. Cualquier otra → INPUT REQUERIDO |
 | 8 | **Un nombre de archivo distinto en cada fila** | Se pierde el join key entre pieza y reporte de pauta. Ya está pasando | Convención única emitida por el skill, versión de dos dígitos |
 | 9 | **Generar la matriz sin dirección "porque todavía no la confirman"** | Fricción #1 del VOC, mencionada 3× | **La dirección es gate bloqueante.** Sin ella solo se emite el bloque de INPUTS REQUERIDOS |
-| 10 | **Decir "listo para publicar"** | Regla durable #1 del CONTEXT: ninguna campaña sale al aire sin revisión humana | Cierre con `APROBACIÓN DE MARCA: pendiente — Daniel Vélez`. El skill **nunca** publica, sube ni activa |
+| 10 | **Decir "listo para publicar"** | Regla durable #1 del CONTEXT: ninguna campaña sale al aire sin revisión humana | Cierre con `APROBACIÓN DE MARCA: pendiente — aprobador de marca`. El skill **nunca** publica, sube ni activa |
 | 11 | **Redactar el mismo copy dos veces para 9:16 y 1:1** | Duplica la salida, y las dos versiones divergen con las correcciones | `COPY_ID` compartido. La fila del segundo formato referencia, no repite |
 | 12 | **Empezar a redactar sin verificar el margen de 45 días** | La pauta necesita 45 días para pasar aprendizaje y llegar a CPL sano | Primera línea de la salida: días hasta el evento + advertencia si son < 45. **Advierte, no bloquea** |
 
@@ -75,7 +75,7 @@ ARCHIVOS  = (5 guiones × 2 formatos)
 COPY      = 5 (video) + 3 (carruseles) + 2 (estáticas) + 1 (flyer) + N (bloques de contacto)
 ```
 
-Medición real: **ExpoColombia Tampa (N=4) = 57 archivos, 20 unidades de copy.**
+Medición real: **ExpoColombia Tampa (N=4) = 57 archivos, 15 unidades de copy** con la fórmula de arriba (la VO va dentro de cada unidad de video).
 Alicante (N=3): ~13 piezas comerciales + Meta. París (N=2): 6 piezas por consultora.
 
-El trabajo intelectual está en las 20 — ahí se van los 2-3 días. Los otros 37 son export y merge.
+El trabajo intelectual está en las 15 — ahí se van los 2-3 días. Los otros 42 son export y merge.

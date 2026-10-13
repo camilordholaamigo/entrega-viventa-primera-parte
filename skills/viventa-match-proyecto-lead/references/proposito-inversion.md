@@ -64,8 +64,10 @@ desistimientos. La marca sobrevive en el bloque D de cada entregable.
 
 1. **Nombrá el techo vos primero.** Si él lo saca, ya perdiste el encuadre. Va en el correo 1,
    párrafo 3 — no en el correo 3.
-2. **Convertí la diferencia en algo con nombre.** Nunca "$21M menos". Siempre "$21M para la
-   cuota inicial / para los gastos de escritura / para no quedar apretado".
+2. **Convertí la diferencia en algo con nombre.** Nunca "$21M menos". Siempre "$21M para los
+   gastos de escritura / para no quedar apretado". **No "para la cuota inicial"**: nombrar la
+   cuota inicial en un correo choca con la regla de Reg Z del SKILL.md (ninguna cifra ni
+   mención de crédito).
 3. **Justificá por una virtud del proyecto, no por una limitación de él.** "Entrega antes" es
    una virtud. "Se ajusta a lo tuyo" es una limitación disfrazada.
 4. **Mostrá el caro y explicá por qué no.** Esconderlo se lee como que se lo estás ocultando.

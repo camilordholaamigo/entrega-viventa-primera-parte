@@ -124,8 +124,8 @@ días. Si responde en cualquier punto, **la secuencia se detiene** y entra el as
 > caso: es el que más rápido puede empezar a rentarse.
 >
 > Una cosa que quiero decirte de una: el banco te preaprobó hasta $300 millones. Eso es el techo,
-> no la meta. Este proyecto te deja $21 millones de margen, y ese margen es tuyo — para la cuota
-> inicial, para los gastos de escritura, o simplemente para no quedar apretado.
+> no la meta. Este proyecto te deja $21 millones de margen, y ese margen es tuyo — para los
+> gastos de escritura, o simplemente para no quedar apretado.
 >
 > Te dejo dos opciones más en el archivo adjunto para que veas la banda completa, pero si tuviera
 > que apostar por una, es esta.
@@ -150,7 +150,7 @@ sin datos concretos"*), planta la regla del preaprobado en el correo 1 y no en e
 
 > Hola Andrés,
 >
-> Te quedó una pregunta de la llamada y prefiero contestarla por escrito, para que la tengas.
+> Hay una pregunta que prefiero contestarte por escrito, para que la tengas.
 >
 > Preguntaste qué pasa si no sale el crédito. La respuesta es que **te devolvemos el valor del
 > servicio**. Así de simple. No cobramos por intentar.
@@ -181,7 +181,7 @@ concreta, no adjetivos.
 ---
 
 **Correo 3 — La decisión compartida y la salida digna**
-*Asunto:* ¿Lo miramos con tu esposa?
+*Asunto:* ¿Lo miramos con quien decide contigo?
 
 > Hola Andrés,
 >
@@ -197,7 +197,7 @@ concreta, no adjetivos.
 > o simplemente no sale. Muchos colombianos allá terminan comprando primero en Colombia justamente
 > por eso. Ninguna opción es mejor en abstracto — depende de tus números, y esos los podemos mirar.
 >
-> Te dejo dos horarios: **martes 7:00 p.m.** o **sábado 10:00 a.m.**, hora de Florida. Me dices
+> Te dejo dos horarios: **martes 7:00 p.m.** o **sábado 10:00 a.m.**, en tu hora. Me dices
 > cuál y lo agendo.
 >
 > Y si este no es el momento, dímelo sin pena y te dejo tranquilo. Cuando quieras retomar, aquí

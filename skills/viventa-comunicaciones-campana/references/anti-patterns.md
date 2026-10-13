@@ -14,7 +14,7 @@ Tabla de gate. Antes de entregar, pasá el paquete por las 14. Cada falla tiene 
 | **7** | WhatsApp escrito como email | 120 palabras, tres párrafos, despedida formal | **Tope duro de 40 palabras, con el conteo impreso al lado de la pieza.** Una sola pregunta. Voz de persona con nombre |
 | **8** | Prometer aprobación, tasa o cuota | "Te aprobamos el crédito", "tasas desde el 9%", "sin cuota inicial garantizado" | Prohibido sin validación del área de Crédito (Reg Z). Formulación permitida: *"revisás si calificás"*, *"qué figura aplica a tu caso"*. **"Mi Casa en Colombia" se nombra como programa existente, jamás como aprobación** |
 | **9** | Escribirle a los 250K | "Enviar a toda la base" | El paquete **siempre** trae las 3 capas de segmentación explícitas y el conteo estimado. Sin criterio de segmento no hay entregable |
-| **10** | Moneda o teléfono cruzados | "Reserva desde 280 USA" en Tampa · Carolina Ronderos en el evento de **España** con teléfono **+1** | Errores reales de los assets de mayo. **`USD`, nunca "USA".** Moneda y prefijo se derivan del **país del evento**. Gate automático país↔moneda↔prefijo |
+| **10** | Moneda o teléfono cruzados | "Reserva desde 280 USA" en Tampa · una consultora en el evento de **España** con teléfono **+1** | Errores reales de los assets de mayo. **`USD`, nunca "USA".** Moneda y prefijo se derivan del **país del evento**. Gate automático país↔moneda↔prefijo |
 | **11** | Un solo correo post-evento para todos | "Gracias a todos los que nos acompañaron" enviado también a los que no fueron | Split obligatorio A/B por asistencia. Sin lista de asistentes → **bloqueante** |
 | **12** | Personalización falsa | "Hola [Nombre], como colombiano en [Ciudad]…" con merge tags que no resuelven | Solo campos que existen y están poblados en Zoho. **Un correo sin nombre es mejor que uno que dice "Hola ,"**. La personalización real es de **segmento** (España habla con testimonios de España), no de merge tag |
 | **13** | Copiar la cadencia de webinar | 7 correos en 14 días, recordatorio "1 hora antes" | Evento presencial: 1 correo cada **6-8 días** en convocatoria; último toque a las **08:00 del día del evento**, no a la hora de inicio. Quien no salió de la casa a las 9 no sale a las 9:50 |
@@ -24,7 +24,7 @@ Tabla de gate. Antes de entregar, pasá el paquete por las 14. Cada falla tiene 
 
 ## Por qué el miedo manda acá
 
-Mateo, textual: *"creo que aquí no hay tanto dolor, pero sí hay un miedo…"* — miedo a **ser
+En esta categoría no hay tanto dolor como miedo: miedo a **ser
 estafado**, a **perder la plata**, a **comprar un inmueble que no es**.
 
 Dos consecuencias de diseño:

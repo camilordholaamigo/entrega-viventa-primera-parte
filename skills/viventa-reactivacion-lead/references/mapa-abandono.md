@@ -1,6 +1,6 @@
 # Mapa de puntos de abandono — detalle
 
-Referencia de consulta para `viventa-reactivacion-lead`. El resumen operativo está en la Fase 2 del
+Referencia de consulta para `viventa-reactivacion-lead`. El resumen operativo está en los Pasos 1 y 4 del
 SKILL.md; acá va el detalle que no cabe ahí.
 
 ---
@@ -28,7 +28,7 @@ asocia dar el teléfono con "me van a saturar" (fricción declarada del VOC).
 convencida — se rompió la mecánica, no la intención. Re-vender la devuelve al principio del embudo.
 
 **La ventana de 1–2 h es el activo más grande del skill.** Es donde se concentra la gran mayoría de
-las recuperaciones; a las 72 h la efectividad cae a una fracción. Operativamente: si Manuela revisa
+las recuperaciones; a las 72 h la efectividad cae a una fracción. Operativamente: si quien opera revisa
 formularios abandonados una vez al día, está perdiendo la ventana. Vale la pena revisar dos o tres
 veces al día aunque el mensaje sea el mismo.
 
@@ -94,7 +94,7 @@ un pretexto de CRM.
 
 ## Tipo 5 — Habló con asesor y no volvió
 
-**El material está en el CRM, no en la cabeza de Manuela.** Antes de escribir hay que leer la nota
+**El material está en el CRM, no en la cabeza de quien escribe.** Antes de escribir hay que leer la nota
 del asesor y encontrar **la objeción que quedó sin resolver**. Casi siempre una de dos:
 
 1. *"No sé si califico"* — el miedo dominante del ICP. El mensaje ofrece el camino corto de
@@ -108,7 +108,7 @@ resolver de la charla con [asesora]. ¿Qué fue lo que te frenó?"* Es más hone
 mejor que adivinar.
 
 **Verificar antes de escribir:** que el lead **no esté activo con otro asesor**. Duplicar contacto
-es una señal de parada (Fase 5.3).
+es una señal de parada (Paso 2).
 
 ---
 
